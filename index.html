@@ -4,6 +4,7 @@
         <style>
             :root {
                 --boxSize: min(18vw, 200px);
+                --n: 0
             }
 
             body {
@@ -58,6 +59,34 @@
                 text-align: center;
                 user-select: none;
                 padding-top: 50px;
+            }
+
+            .rainbow {
+                animation-name: rainbowAnimation;
+                animation-duration: 4s;
+                animation-iteration-count: infinite;
+                animation-delay: calc(var(--n) * 0.1s);
+            }
+
+            @-webkit-keyframes rainbowAnimation {
+            0% {background-color:#63e686;}
+            14% {background-color:#70ffcd;}
+            28% {background-color:#6f52ff;}
+            42% {background-color:#b647ff;}
+            54% {background-color:#ff5754;}
+            69% {background-color:#ffac54;}
+            85% {background-color:#e3ff47;}
+            100% {background-color:#87ff47;}
+            }
+            @keyframes rainbowAnimation {
+            0% {background-color:#63e686;}
+            14% {background-color:#70ffcd;}
+            28% {background-color:#6f52ff;}
+            42% {background-color:#b647ff;}
+            54% {background-color:#ff5754;}
+            69% {background-color:#ffac54;}
+            85% {background-color:#e3ff47;}
+            100% {background-color:#87ff47;}
             }
         </style>
     </head>
@@ -150,7 +179,8 @@
                 "Dørene åpnes sent til mat",
                 "Feilmelding på tørketrommelen",
                 "Noen er i drag",
-                "Mikan mister noe"
+                "Mikan mister noe",
+                "Tobias gamer i Romskip bakrommet"
             ];
 
             freeSpaces = [
@@ -197,16 +227,37 @@
 
                 para.appendChild(node);
                 boxes[i].appendChild(para);
+                boxes[i].style.setProperty('--n', i%5+i/5);
+
 
                 boxes[i].addEventListener("click", (event) => {
-                    event.target.classList.add("clicked");
-                    boxesClicked[i] = true;
+                    if (!event.target.classList.contains("clicked"))
+                        event.target.classList.add("clicked");
+                    else
+                        event.target.classList.remove("clicked");
+                    
+                    boxesClicked[i] = event.target.classList.contains("clicked");
                     localStorage.setItem("boxesClicked", JSON.stringify(boxesClicked));
                     CheckForLineComplete();
                 });
             }
 
             function CheckForLineComplete() {
+                allCleared = true;
+                for (let i=0; i<boxesClicked.length; i++) {
+                    if (boxesClicked[i] == false) {
+                        allCleared = false;
+                    }
+                }
+                for (let i=0; i<boxes.length; i++) {
+                    if (allCleared) 
+                        boxes[i].classList.add("rainbow");
+                    else {
+                        if (boxes[i].classList.contains("rainbow"))
+                            boxes[i].classList.remove("rainbow");
+                    }
+                }
+
                 CheckHorizontal();
                 CheckVertical();
                 CheckDiagonal();
@@ -221,11 +272,13 @@
                         }
                     }
 
-                    if (!lineClear)
-                        continue;
-
                     for (let y = 0; y<5; y++) {
-                        boxes[y*5+x].classList.add("cleared");
+                        if (lineClear)
+                            boxes[y*5+x].classList.add("cleared");
+                        else {
+                            if (boxes[y*5+x].classList.contains("cleared"))
+                                boxes[y*5+x].classList.remove("cleared");
+                        }
                     }
                 }
             }
