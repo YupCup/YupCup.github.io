@@ -3,7 +3,7 @@
     <head>
         <style>
             :root {
-                --boxSize: 125px;
+                --boxSize: min(18vw, 200px);
             }
 
             body {
@@ -38,6 +38,7 @@
                 display: table-cell;
                 vertical-align: middle;
                 scale: 90%;
+                font-size: calc(var(--boxSize) / 7);
             }
             h1 {
                 text-align: center;
