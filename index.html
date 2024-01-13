@@ -1,0 +1,154 @@
+<html>
+    <meta charset="UTF-8">
+    <head>
+        <style>
+            :root {
+                --boxSize: 125px;
+            }
+
+            body {
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-weight: 500;
+            }
+
+            .board {
+                display: flex;
+                justify-content: center;
+                /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
+            }
+            .row {
+                padding: 0px;
+
+                margin-left: calc(var(--boxSize) / 20);
+                margin-right: calc(var(--boxSize) / 20);
+            }
+            .box {
+                outline: solid 3px black;
+                border-radius: calc(var(--boxSize)/10);
+                
+                width: var(--boxSize);
+                height: var(--boxSize);
+                
+                text-align: center;
+                display: table;
+
+                margin-top: calc(var(--boxSize) / 10);
+            }
+            p {
+                display: table-cell;
+                vertical-align: middle;
+                scale: 90%;
+            }
+            h1 {
+                text-align: center;
+                padding-top: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Heimtunbingo</h1>
+
+        <div class="board">
+            <div class="row">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div class="row">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div class="row">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div class="row">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div class="row">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+        </div>
+
+        <script>
+            bingoContent = [
+                "Synnøve og Hanna sier noe i kor",
+                "10 folk rekker ikke morgenmøte",
+                "Adrian er skuffet over maten",
+                "Brannalarmen går",
+                "Skrymir jorder seg",
+                "'Du er en ..!' - Claus",
+                "Noen sender en snap med en doklage",
+                "Matkøen går forbi doen",
+                "Suppe på lørdag",
+                "Romskipelev bærer på noe rart",
+                "Halvparten av CG har på joggebukse",
+                "Hans-Thore-latter",
+                "Tove banner",
+                "Nytt Johann sitat",
+                "Kampmusikk på treningsrommet",
+                "Du får bare ris til restemiddag",
+                "Boffen spinner en frisbee på fingeren",
+                "Vebjørn lager grimaser",
+                "Rasmus OG Sami sitter på kunstrommet",
+                "Snorre spiller Beatsaber",
+                "Tegneserie tegner Hafsteinn",
+                "Ord for dagen møter ikke opp",
+                "Allsang i dusjen",
+                "Pepperkaker!",
+                "Claus titter over brillene sine",
+                "RM soundtrack i vaskekjelleren",
+                "Vaskekjelleren er full",
+                "Du blir låst ute om kvelden",
+                "Dørene åpnes sent til mat",
+                "Feilmelding på tørketrommelen",
+                "Noen er i drag"
+            ];
+
+            freeSpaces = [
+                "Jacob sier en dårlig vits",
+                "Skrymir spiller Mario Kart"
+            ]
+
+            for (let i = 0; i<24; i++) {
+                if (bingoContent.length <= i) {
+                    bingoContent.push(i);
+                }
+            }
+
+            boxes = document.getElementsByClassName("box");
+            for (let i = 0; i < boxes.length; i++) {
+                para = document.createElement("p");
+                
+                if (i != 12) {
+                    randomIndex = Math.floor(Math.random() * bingoContent.length);
+                    node = document.createTextNode(bingoContent[randomIndex]);
+                    bingoContent.splice(randomIndex, 1);
+                } else {
+                    randomIndex = Math.floor(Math.random() * freeSpaces.length);
+                    node = document.createTextNode("FREE SPACE: " + freeSpaces[randomIndex]);
+                    freeSpaces.splice(randomIndex, 1);
+                }
+
+                para.appendChild(node);
+                boxes[i].appendChild(para);
+            }
+        </script>
+    </body>
+</html>
