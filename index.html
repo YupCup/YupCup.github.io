@@ -103,15 +103,15 @@
         </div>
 
         <script>
-            if (localStorage.getItem("userid") == null)
-                localStorage.setItem("userid", Math.floor(Math.random*1000));
+            if (localStorage.getItem("userid") == null || isNaN(localStorage.getItem("userid")))
+                localStorage.setItem("userid", Math.floor(Math.random()*1000));
 
             const date = new Date();
             const dateNumber = Math.floor(date.getTime()/86400000) + localStorage.getItem("userid");
             
             if (localStorage.getItem("lastRandomSeed") != null) {
                 if (localStorage.getItem("lastRandomSeed") != dateNumber) {
-                    localStorage.clear("boxesClicked");
+                    localStorage.removeItem("boxesClicked");
                 }
             }
 
