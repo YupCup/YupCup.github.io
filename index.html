@@ -10,6 +10,8 @@
             body {
                 font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
                 font-weight: 500;
+                user-select: none;
+                -webkit-tap-highlight-color: transparent;
             }
 
             .board {
@@ -40,6 +42,9 @@
             }
             .box:hover:not(.clicked) {
                 background-color: lightgray;
+            }
+            .box:active {
+                scale: 98%;
             }
             .clicked {
                 background-color: #f3f7b7;
@@ -179,13 +184,16 @@
                 "Dørene åpnes sent til mat",
                 "Feilmelding på tørketrommelen",
                 "Noen er i drag",
-                "Mikan mister noe",
-                "Tobias gamer i Romskip bakrommet"
+                "Mikan mister noe"
             ];
 
             freeSpaces = [
                 "Jacob sier en dårlig vits",
-                "Skrymir spiller Mario Kart"
+                "Skrymir spiller Mario Kart",
+                "Lærer Adrian jobber på rollespill i timen",
+                "CG gamer i timen",
+                "Ny sexvits i elev-quotes",
+                "Under 10 personer er våkne til frokost"
             ];
 
             boxesClicked = []
