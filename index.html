@@ -153,7 +153,7 @@
 
 
             bingoContent = [
-                "Synnøve og Hanna sier noe i kor",
+                "Hanna og Synnøve sier noe i kor",
                 "10 folk rekker ikke morgenmøte",
                 "Adrian FO er skuffet over maten",
                 "Brannalarmen går",
@@ -176,7 +176,6 @@
                 "Tegneserie tegner Hafsteinn",
                 "Ord for dagen møter ikke opp",
                 "Allsang i dusjen",
-                "Pepperkaker!",
                 "Claus titter over brillene sine",
                 "RM soundtrack i vaskekjelleren",
                 "Vaskekjelleren er full",
@@ -186,7 +185,16 @@
                 "Noen er i drag",
                 "Mikan mister noe",
                 "Emil klager over Dark Souls 2",
-                "Egg til frokost"
+                "Egg til frokost",
+                "Noen rager på Esport",
+                "Joya og John siterer Joya og John",
+                "Tove sier 'Gummisalen' eller 'bulkegjengen'",
+                "Romskip jobber ekstremt overtid",
+                "Vegard ber folk ta føttene ned fra setene",
+                "Adele sitter uergonomisk",
+                "Daniel blir sint på fotball på hemsen",
+                "Kjøkkentjenesten ser døde ut",
+                "Ragnhild nevner barna sine og stønner tungt"
             ];
 
             freeSpaces = [
@@ -196,7 +204,9 @@
                 "CG gamer i timen",
                 "Ny sexvits i elev-quotes",
                 "Under 10 personer er våkne til frokost",
-                "FO elev drikker te"
+                "Undergangdusjen er opptatt",
+                "Helene og Matteo er hyped over gatcha",
+                "Cosplay er tomme for gaffateip"
             ];
 
             boxesClicked = []
@@ -222,7 +232,7 @@
                 }
                 CheckForLineComplete();
             }
-
+            
             for (let i = 0; i < boxes.length; i++) {
                 para = document.createElement("p");
                 
@@ -241,7 +251,7 @@
                 boxes[i].style.setProperty('--n', i%5+i/5);
 
 
-                boxes[i].addEventListener("click", (event) => {
+                boxes[i].addEventListener("mousedown", (event) => {
                     if (!event.target.classList.contains("clicked"))
                         event.target.classList.add("clicked");
                     else
