@@ -103,8 +103,20 @@
         </div>
 
         <script>
+            if (localStorage.getItem("userid") == null)
+                localStorage.setItem("userid", Math.floor(Math.random*1000));
+
             const date = new Date();
-            const dateNumber = Math.floor(date.getTime()/86400000);
+            const dateNumber = Math.floor(date.getTime()/86400000) + localStorage.getItem("userid");
+            
+            if (localStorage.getItem("lastRandomSeed") != null) {
+                if (localStorage.getItem("lastRandomSeed") != dateNumber) {
+                    localStorage.clear("boxesClicked");
+                }
+            }
+
+            localStorage.setItem("lastRandomSeed", dateNumber);
+
 
             bingoContent = [
                 "Synnøve og Hanna sier noe i kor",
@@ -156,8 +168,18 @@
 
             boxes = document.getElementsByClassName("box");
 
-            for (let i = 0; i<boxes.length; i++) {
-                boxesClicked.push(false);
+            if (localStorage.getItem("boxesClicked") == null) {
+                for (let i = 0; i<boxes.length; i++) {
+                    boxesClicked.push(false);
+                }
+                localStorage.setItem("boxesClicked", JSON.stringify(boxesClicked));
+            } else {
+                boxesClicked = JSON.parse(localStorage.getItem("boxesClicked"));
+                for (let i = 0; i<boxesClicked.length; i++) {
+                    if (boxesClicked[i])
+                        boxes[i].classList.add("clicked");
+                }
+                CheckForLineComplete();
             }
 
             for (let i = 0; i < boxes.length; i++) {
@@ -179,6 +201,7 @@
                 boxes[i].addEventListener("click", (event) => {
                     event.target.classList.add("clicked");
                     boxesClicked[i] = true;
+                    localStorage.setItem("boxesClicked", JSON.stringify(boxesClicked));
                     CheckForLineComplete();
                 });
             }
