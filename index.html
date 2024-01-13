@@ -33,15 +33,30 @@
                 display: table;
 
                 margin-top: calc(var(--boxSize) / 10);
+                cursor: pointer;
+                
+                transition: .1s;
+            }
+            .box:hover:not(.clicked) {
+                background-color: lightgray;
+            }
+            .clicked {
+                background-color: #f3f7b7;
+            }
+            .cleared {
+                background-color: #63e686;
             }
             p {
                 display: table-cell;
                 vertical-align: middle;
                 scale: 90%;
                 font-size: calc(var(--boxSize) / 7);
+                user-select: none;
+                pointer-events: none;
             }
             h1 {
                 text-align: center;
+                user-select: none;
                 padding-top: 50px;
             }
         </style>
@@ -88,6 +103,9 @@
         </div>
 
         <script>
+            const date = new Date();
+            const dateNumber = Math.floor(date.getTime()/86400000);
+
             bingoContent = [
                 "Synnøve og Hanna sier noe i kor",
                 "10 folk rekker ikke morgenmøte",
@@ -119,13 +137,16 @@
                 "Du blir låst ute om kvelden",
                 "Dørene åpnes sent til mat",
                 "Feilmelding på tørketrommelen",
-                "Noen er i drag"
+                "Noen er i drag",
+                "Mikan mister noe"
             ];
 
             freeSpaces = [
                 "Jacob sier en dårlig vits",
                 "Skrymir spiller Mario Kart"
-            ]
+            ];
+
+            boxesClicked = []
 
             for (let i = 0; i<24; i++) {
                 if (bingoContent.length <= i) {
@@ -134,21 +155,99 @@
             }
 
             boxes = document.getElementsByClassName("box");
+
+            for (let i = 0; i<boxes.length; i++) {
+                boxesClicked.push(false);
+            }
+
             for (let i = 0; i < boxes.length; i++) {
                 para = document.createElement("p");
                 
                 if (i != 12) {
-                    randomIndex = Math.floor(Math.random() * bingoContent.length);
+                    randomIndex = Math.floor(getRandom(dateNumber) * bingoContent.length);
                     node = document.createTextNode(bingoContent[randomIndex]);
                     bingoContent.splice(randomIndex, 1);
                 } else {
-                    randomIndex = Math.floor(Math.random() * freeSpaces.length);
+                    randomIndex = Math.floor(getRandom(dateNumber) * freeSpaces.length);
                     node = document.createTextNode("FREE SPACE: " + freeSpaces[randomIndex]);
                     freeSpaces.splice(randomIndex, 1);
                 }
 
                 para.appendChild(node);
                 boxes[i].appendChild(para);
+
+                boxes[i].addEventListener("click", (event) => {
+                    event.target.classList.add("clicked");
+                    boxesClicked[i] = true;
+                    CheckForLineComplete();
+                });
+            }
+
+            function CheckForLineComplete() {
+                CheckHorizontal();
+                CheckVertical();
+                CheckDiagonal();
+            }
+
+            function CheckHorizontal() {
+                for (let x = 0; x<5; x++) {
+                    lineClear = true;
+                    for (let y = 0; y<5; y++) {
+                        if (!boxesClicked[y*5+x]) {
+                            lineClear = false;
+                        }
+                    }
+
+                    if (!lineClear)
+                        continue;
+
+                    for (let y = 0; y<5; y++) {
+                        boxes[y*5+x].classList.add("cleared");
+                    }
+                }
+            }
+
+            function CheckVertical() {
+                for (let x = 0; x<5; x++) {
+                    lineClear = true;
+                    for (let y = 0; y<5; y++) {
+                        if (!boxesClicked[y+x*5]) {
+                            lineClear = false;
+                        }
+                    }
+
+                    if (!lineClear)
+                        continue;
+
+                    for (let y = 0; y<5; y++) {
+                        boxes[y+x*5].classList.add("cleared");
+                    }
+                }
+            }
+
+            function CheckDiagonal() {
+                for (let i = 0; i<2; i++) {
+                    lineClear = true;
+                    for (let j = i; j<5+i; j++) {
+                        if (!boxesClicked[j*(6-2*i)]) {
+                            lineClear = false;
+                        }
+                    }
+
+                    if (!lineClear)
+                        continue;
+
+                    for (let j = i; j<5+i; j++) {
+                        boxes[j*(6-2*i)].classList.add("cleared");
+                    }
+                }
+            }
+
+            function getRandom(a) {
+                a |= 0; a = a + 0x9e3779b9 | 0;
+                var t = a ^ a >>> 16; t = Math.imul(t, 0x21f0aaad);
+                    t = t ^ t >>> 15; t = Math.imul(t, 0x735a2d97);
+                return ((t = t ^ t >>> 15) >>> 0) / 4294967296;
             }
         </script>
     </body>
