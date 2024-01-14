@@ -3,6 +3,8 @@ const dateNumber = date.getFullYear() * 10000 + date.getMonth() * 100 + date.get
 
 CheckForDateChange();
 
+CheckForOldVersion();
+
 MergeContentLists();
 
 boxes = document.getElementsByClassName("box");
@@ -49,10 +51,22 @@ function CheckForDateChange() {
     localStorage.setItem("lastDate", dateNumber);
 }
 
+function CheckForOldVersion() {
+    if (localStorage.getItem("userid") != null || localStorage.getItem("lastRandomSeed") != null)
+        ResetOldBoard();
+}
+
 function ResetBoard() {
     localStorage.removeItem("boxesClicked");
     localStorage.removeItem("ContentIndexes");
     localStorage.removeItem("ListLengthLimits");
+}
+
+function ResetOldBoard() {
+    ResetBoard();
+    
+    localStorage.removeItem("userid");
+    localStorage.removeItem("lastRandomSeed");
 }
 
 function MergeContentLists() {
