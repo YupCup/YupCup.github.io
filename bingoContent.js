@@ -52,6 +52,10 @@ saturdayList = [
     "Rage klager over grøt"
 ];
 
+sundayList = [
+    "Du glemmer dessert"
+];
+
 freeSpaces = [
     "Jacob sier en dårlig vits",
     "Skrymir spiller Mario Kart",

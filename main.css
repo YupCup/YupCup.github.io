@@ -1,0 +1,91 @@
+:root {
+    --boxSize: min(18vw, 200px);
+    --n: 0
+}
+
+body {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 500;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.board {
+    display: flex;
+    justify-content: center;
+}
+.row {
+    padding: 0px;
+
+    margin-left: calc(var(--boxSize) / 20);
+    margin-right: calc(var(--boxSize) / 20);
+}
+.box {
+    outline: solid 3px black;
+    border-radius: calc(var(--boxSize)/10);
+    
+    width: var(--boxSize);
+    height: var(--boxSize);
+    
+    text-align: center;
+    display: table;
+
+    margin-top: calc(var(--boxSize) / 10);
+    cursor: pointer;
+    
+    transition: .1s;
+}
+.box:hover:not(.clicked) {
+    background-color: lightgray;
+}
+.box:active {
+    scale: 98%;
+}
+.clicked {
+    background-color: #f3f7b7;
+}
+.cleared {
+    background-color: #63e686;
+}
+p {
+    display: table-cell;
+    vertical-align: middle;
+    scale: 90%;
+    font-size: calc(var(--boxSize) / 7);
+    user-select: none;
+    pointer-events: none;
+}
+h1 {
+    text-align: center;
+    user-select: none;
+    padding-top: 50px;
+    font-size: 50px;
+}
+
+.rainbow {
+    animation-name: rainbowAnimation;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-delay: calc(var(--n) * 0.1s);
+}
+
+@-webkit-keyframes rainbowAnimation {
+0% {background-color:#63e686;}
+14% {background-color:#70ffcd;}
+28% {background-color:#6f52ff;}
+42% {background-color:#b647ff;}
+54% {background-color:#ff5754;}
+69% {background-color:#ffac54;}
+85% {background-color:#e3ff47;}
+100% {background-color:#87ff47;}
+}
+@keyframes rainbowAnimation {
+0% {background-color:#63e686;}
+14% {background-color:#70ffcd;}
+28% {background-color:#6f52ff;}
+42% {background-color:#b647ff;}
+54% {background-color:#ff5754;}
+69% {background-color:#ffac54;}
+85% {background-color:#e3ff47;}
+100% {background-color:#87ff47;}
+}
