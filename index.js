@@ -5,7 +5,8 @@ CheckForDateChange();
 
 CheckForOldVersion();
 
-MergeContentLists();
+MergeMainContentLists();
+MergeFreespaceContentLists();
 
 boxes = document.getElementsByClassName("box");
 
@@ -47,6 +48,7 @@ function CheckForDateChange() {
             ResetBoard();
         }
     }
+    ResetBoard();
 
     localStorage.setItem("lastDate", dateNumber);
 }
@@ -60,6 +62,7 @@ function ResetBoard() {
     localStorage.removeItem("boxesClicked");
     localStorage.removeItem("ContentIndexes");
     localStorage.removeItem("ListLengthLimits");
+    localStorage.removeItem("FreeSpaceListLengthLimits");
 }
 
 function ResetOldBoard() {
@@ -69,38 +72,50 @@ function ResetOldBoard() {
     localStorage.removeItem("lastRandomSeed");
 }
 
-function MergeContentLists() {
-    dayToEuropeanStandard = (6 + date.getDay()) % 7;
-    listsToMerge = dayList[dayToEuropeanStandard];
-
-    LimitListLength(); // To allow modifying lists during day
-
-    mergedList = bingoContent;
-    for (let i=0; i<listsToMerge.length; i++) {
-        mergedList = [...mergedList, ...listsToMerge[i]];
-    }
+function MergeFreespaceContentLists() {
+    mergedFreespaceList = freeSpaces;
+    mergedFreespaceList = MergeContentLists(mergedFreespaceList, freeSpacesDayList, "FreeSpaceListLengthLimits");
 }
 
-function LimitListLength() {
+function MergeMainContentLists() {
+    mergedList = bingoContent;
+    mergedList = MergeContentLists(mergedList, dayList, "ListLengthLimits");
+}
+
+function MergeContentLists(_mergedList, _dayList, localStorageName) {
+    dayToEuropeanStandard = (6 + date.getDay()) % 7;
+    listsToMerge = _dayList[dayToEuropeanStandard];
+
+    LimitListLength(localStorageName); // To allow modifying lists during day
+
+    for (let i=0; i<listsToMerge.length; i++) {
+        _mergedList = [..._mergedList, ...listsToMerge[i]];
+    }
+
+    console.log(_mergedList.length)
+    return _mergedList;
+}
+
+function LimitListLength(localStorageName) {
     listLengthLimits = [];
-    if (localStorage.getItem("ListLengthLimits") != null) {
-        listLengthLimits = JSON.parse(localStorage.getItem("ListLengthLimits"));
+    if (localStorage.getItem(localStorageName) != null) {
+        listLengthLimits = JSON.parse(localStorage.getItem(localStorageName));
 
         bingoContent.length = listLengthLimits[0];
         for (let i=1; i<listsToMerge.length; i++)
             listsToMerge[i].length = listLengthLimits[i];
     } 
     else {
-        SaveLengthLimits();
+        SaveLengthLimits(localStorageName);
     }
 }
 
-function SaveLengthLimits() {
+function SaveLengthLimits(localStorageName) {
     listLengthLimits.push(bingoContent.length);
     for (let i=0; i<listsToMerge.length; i++)
         listLengthLimits.push(listsToMerge[i].length);
 
-    localStorage.setItem("ListLengthLimits", JSON.stringify(listLengthLimits));
+    localStorage.setItem(localStorageName, JSON.stringify(listLengthLimits));
 }
 
 function FillClickList() {
@@ -130,6 +145,11 @@ function FillClickListFromStorage() {
 
 function FillBox(index) {
     contentList = mergedList;
+    prefix = "";
+    if (index == 12) {
+        contentList = mergedFreespaceList;
+        prefix = "FREE SPACE:\n";
+    }
 
     contentIndex = 0;
     if (boxContentIndexes.length > index)
@@ -139,11 +159,6 @@ function FillBox(index) {
         boxContentIndexes.push(contentIndex);
     }
 
-    prefix = "";
-    if (index == 12) {
-        contentList = freeSpaces;
-        prefix = "FREE SPACE:\n";
-    }
     
     node = document.createTextNode(prefix + contentList[contentIndex]);
 }

@@ -63,7 +63,6 @@ saturdayList = [
 ];
 
 sundayList = [
-    "Du glemmer dessert"
 ];
 
 freeSpaces = [
@@ -71,10 +70,15 @@ freeSpaces = [
     "Skrymir spiller Mario Kart",
     "CG gamer i mørket",
     "Ny sexvits i elev-quotes",
-    "Under 10 personer er våkne til frokost",
     "Undergangdusjen er opptatt",
-    "Helene og Matteo er hyped over gatcha",
     "Cosplay er tomme for gaffateip"
+];
+
+freeSpacesWeekday = [
+    "Under 10 personer er våkne til frokost"
+];
+
+freeSpacesWeekend = [
 ];
 
 dayList = [
@@ -86,3 +90,14 @@ dayList = [
     [saturdayList],
     [sundayList]
 ];
+
+freeSpacesDayList = [
+    [freeSpacesWeekday],
+    [freeSpacesWeekday],
+    [freeSpacesWeekday],
+    [freeSpacesWeekday],
+    [freeSpacesWeekday],
+    
+    [freeSpacesWeekend],
+    [freeSpacesWeekend]
+]
