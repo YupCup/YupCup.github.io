@@ -73,8 +73,8 @@ function LimitListLength() {
         listLengthLimits = JSON.parse(localStorage.getItem("ListLengthLimits"));
 
         bingoContent.length = listLengthLimits[0];
-        for (let i=1; i<listLengthLimits.length; i++)
-            listsToMerge.length = listLengthLimits[i];
+        for (let i=1; i<listsToMerge.length; i++)
+            listsToMerge[i].length = listLengthLimits[i];
     } 
     else {
         SaveLengthLimits();

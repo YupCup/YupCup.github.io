@@ -69,7 +69,7 @@ sundayList = [
 freeSpaces = [
     "Jacob sier en dårlig vits",
     "Skrymir spiller Mario Kart",
-    "CG gamer i timen",
+    "CG gamer i mørket",
     "Ny sexvits i elev-quotes",
     "Under 10 personer er våkne til frokost",
     "Undergangdusjen er opptatt",
