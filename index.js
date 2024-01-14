@@ -48,7 +48,6 @@ function CheckForDateChange() {
             ResetBoard();
         }
     }
-    ResetBoard();
 
     localStorage.setItem("lastDate", dateNumber);
 }
