@@ -43,6 +43,7 @@ weekdayList = [
     "Hans-Thore-latter",
     "Tove banner",
     "Nytt Johann sitat",
+    "Lærer Adrian jobber på rollespill i timen",
     "Ragnhild nevner barna sine og stønner tungt"
 ];
 
@@ -54,7 +55,6 @@ saturdayList = [
 freeSpaces = [
     "Jacob sier en dårlig vits",
     "Skrymir spiller Mario Kart",
-    "Lærer Adrian jobber på rollespill i timen",
     "CG gamer i timen",
     "Ny sexvits i elev-quotes",
     "Under 10 personer er våkne til frokost",
