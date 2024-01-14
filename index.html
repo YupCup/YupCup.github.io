@@ -150,7 +150,7 @@
         <script src="bingoContent.js"></script>
         <script>
             const date = new Date();
-            const dateNumber = date.getFullYear() * 10000 + date.getMonth() * 100 + date.getDate();
+            const dateNumber = date.getFullYear() * 10000 + date.getMonth() * 100 + date.getDate() ;
 
             CheckForDateChange();
 
@@ -203,6 +203,7 @@
             function ResetBoard() {
                 localStorage.removeItem("boxesClicked");
                 localStorage.removeItem("ContentIndexes");
+                localStorage.removeItem("ListLengthLimits");
             }
 
             function MergeContentLists() {
@@ -212,7 +213,25 @@
                 else
                     listToMerge = weekdayList;
 
-                bingoContent = [...bingoContent, ...listToMerge];
+                LimitListLength(); // To allow modifying lists during day
+
+                mergedList = [...bingoContent, ...listToMerge];
+            }
+
+            function LimitListLength() {
+                listLengthLimits = [];
+                if (localStorage.getItem("ListLengthLimits") != null) {
+                    listLengthLimits = JSON.parse(localStorage.getItem("ListLengthLimits"));
+
+                    bingoContent.length = listLengthLimits[0];
+                    listToMerge.length = listLengthLimits[1];
+                } 
+                else {
+                    listLengthLimits.push(bingoContent.length);
+                    listLengthLimits.push(listToMerge.length);
+
+                    localStorage.setItem("ListLengthLimits", JSON.stringify(listLengthLimits));
+                }
             }
 
             function FillClickList() {
@@ -241,7 +260,7 @@
             }
 
             function FillBox(index) {
-                contentList = bingoContent;
+                contentList = mergedList;
                 prefix = "";
 
                 if (index == 12) {
