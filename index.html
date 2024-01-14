@@ -28,7 +28,6 @@
             .board {
                 display: flex;
                 justify-content: center;
-                /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
             }
             .row {
                 padding: 0px;
@@ -148,148 +147,43 @@
             </div>
         </div>
 
+        <script src="bingoContent.js"></script>
         <script>
-            if (localStorage.getItem("userid") == null || isNaN(localStorage.getItem("userid")))
-                localStorage.setItem("userid", Math.floor(Math.random()*1000));
-
             const date = new Date();
-            const dateNumber = Math.floor(date.getTime()/86400000) + localStorage.getItem("userid");
+            const dateNumber = date.getFullYear() * 10000 + date.getMonth() * 100 + date.getDate();
+
+            CheckForDateChange();
+
+            MergeContentLists();
             
-            if (localStorage.getItem("lastRandomSeed") != null) {
-                if (localStorage.getItem("lastRandomSeed") != dateNumber) {
-                    localStorage.removeItem("boxesClicked");
-                }
-            }
-
-            localStorage.setItem("lastRandomSeed", dateNumber);
-            
-            console.log("Yahaha! You Found Me!");
-
-            bingoContent = [
-                "Hanna og Synnøve sier noe i kor",
-                "10 folk rekker ikke morgenmøte",
-                "Adrian FO er skuffet over maten",
-                "Brannalarmen går",
-                "Skrymir jorder seg",
-                "'Du er en ..!' - Claus",
-                "Noen sender en snap med en doklage",
-                "Matkøen går forbi doen",
-                "Suppe på lørdag",
-                "Romskipelev bærer på noe rart",
-                "Halvparten av CG har på joggebukse",
-                "Hans-Thore-latter",
-                "Tove banner",
-                "Nytt Johann sitat",
-                "Kampmusikk på treningsrommet",
-                "Du får bare ris til restemiddag",
-                "Boffen spinner en frisbee på fingeren",
-                "Vebjørn lager grimaser",
-                "Rasmus OG Sami sitter på kunstrommet",
-                "Snorre spiller Beatsaber",
-                "Tegneserie tegner Hafsteinn",
-                "Ord for dagen møter ikke opp",
-                "Allsang i dusjen",
-                "Claus titter over brillene sine",
-                "RM soundtrack i vaskekjelleren",
-                "Vaskekjelleren er full",
-                "Du blir låst ute om kvelden",
-                "Dørene åpnes sent til mat",
-                "Feilmelding på tørketrommelen",
-                "Noen er i drag",
-                "Mikan mister noe",
-                "Emil klager over Dark Souls 2",
-                "Egg til frokost",
-                "Noen rager på Esport",
-                "Joya og John siterer Joya og John",
-                "Tove sier 'Gummisalen' eller 'bulkegjengen'",
-                "Romskip jobber ekstremt overtid",
-                "Vegard ber folk ta føttene ned fra setene",
-                "Adele sitter uergonomisk",
-                "Daniel blir sint på fotball på hemsen",
-                "Kjøkkentjenesten ser døde ut",
-                "Ragnhild nevner barna sine og stønner tungt"
-            ];
-
-            freeSpaces = [
-                "Jacob sier en dårlig vits",
-                "Skrymir spiller Mario Kart",
-                "Lærer Adrian jobber på rollespill i timen",
-                "CG gamer i timen",
-                "Ny sexvits i elev-quotes",
-                "Under 10 personer er våkne til frokost",
-                "Undergangdusjen er opptatt",
-                "Helene og Matteo er hyped over gatcha",
-                "Cosplay er tomme for gaffateip"
-            ];
-
-            boxesClicked = []
-
-            for (let i = 0; i<24; i++) {
-                if (bingoContent.length <= i) {
-                    bingoContent.push(i);
-                }
-            }
-
             boxes = document.getElementsByClassName("box");
 
-            if (localStorage.getItem("boxesClicked") == null) {
-                for (let i = 0; i<boxes.length; i++) {
-                    boxesClicked.push(false);
-                }
-                localStorage.setItem("boxesClicked", JSON.stringify(boxesClicked));
-            } else {
-                boxesClicked = JSON.parse(localStorage.getItem("boxesClicked"));
-                for (let i = 0; i<boxesClicked.length; i++) {
-                    if (boxesClicked[i])
-                        boxes[i].classList.add("clicked");
-                }
-                CheckForLineComplete();
+            boxesClicked = [];
+            FillClickList();
+
+            boxContentIndexes = [];
+            if (localStorage.getItem("ContentIndexes") != null) {
+                boxContentIndexes = JSON.parse(localStorage.getItem("ContentIndexes"));
             }
+            console.log(boxContentIndexes);
 
             for (let i = 0; i < boxes.length; i++) {
                 para = document.createElement("p");
-                
-                if (i != 12) {
-                    randomIndex = Math.floor(getRandom(dateNumber) * bingoContent.length);
-                    node = document.createTextNode(bingoContent[randomIndex]);
-                    bingoContent.splice(randomIndex, 1);
-                } else {
-                    randomIndex = Math.floor(getRandom(dateNumber) * freeSpaces.length);
-                    node = document.createTextNode("FREE SPACE: " + freeSpaces[randomIndex]);
-                    freeSpaces.splice(randomIndex, 1);
-                }
-
-                para.appendChild(node);
-                boxes[i].appendChild(para);
-                boxes[i].style.setProperty('--n', i%5+i/5);
-
-
-                boxes[i].addEventListener("mousedown", (event) => {
-                    if (!event.target.classList.contains("clicked"))
-                        event.target.classList.add("clicked");
-                    else
-                        event.target.classList.remove("clicked");
-                    
-                    boxesClicked[i] = event.target.classList.contains("clicked");
-                    localStorage.setItem("boxesClicked", JSON.stringify(boxesClicked));
-                    CheckForLineComplete();
-                });
+                FillBox(i);
+                AppendBox(i);
             }
+
+            localStorage.setItem("ContentIndexes", JSON.stringify(boxContentIndexes));
 
             function CheckForLineComplete() {
                 allCleared = true;
                 for (let i=0; i<boxesClicked.length; i++) {
-                    if (boxesClicked[i] == false) {
+                    if (boxesClicked[i] == false)
                         allCleared = false;
-                    }
                 }
+
                 for (let i=0; i<boxes.length; i++) {
-                    if (allCleared) 
-                        boxes[i].classList.add("rainbow");
-                    else {
-                        if (boxes[i].classList.contains("rainbow"))
-                            boxes[i].classList.remove("rainbow");
-                    }
+                    SetClassActive(boxes[i].classList, "rainbow", allCleared);
                 }
 
                 CheckHorizontal();
@@ -297,6 +191,118 @@
                 CheckDiagonal();
             }
 
+            function CheckForDateChange() {
+                if (localStorage.getItem("lastDate") != null) {
+                    if (localStorage.getItem("lastDate") != dateNumber) {
+                        ResetBoard();
+                    }
+                }
+
+                localStorage.setItem("lastDate", dateNumber);
+            }
+
+            function ResetBoard() {
+                localStorage.removeItem("boxesClicked");
+                localStorage.removeItem("ContentIndexes");
+            }
+
+            function MergeContentLists() {
+                listToMerge = [];
+                if (date.getDay() == 0 || 6)
+                    listToMerge = saturdayList;
+                else
+                    listToMerge = weekdayList;
+
+                bingoContent = [...bingoContent, ...listToMerge];
+            }
+
+            function FillClickList() {
+                if (localStorage.getItem("boxesClicked") == null)
+                    CreateClickList();
+                else
+                    FillClickListFromStorage();
+            }
+
+            function CreateClickList() {
+                for (let i = 0; i<boxes.length; i++)
+                    boxesClicked.push(false);
+
+                localStorage.setItem("boxesClicked", JSON.stringify(boxesClicked));
+            }
+
+            function FillClickListFromStorage() {
+                boxesClicked = JSON.parse(localStorage.getItem("boxesClicked"));
+
+                for (let i = 0; i<boxesClicked.length; i++) {
+                    if (boxesClicked[i])
+                        boxes[i].classList.add("clicked");
+                }
+
+                CheckForLineComplete();
+            }
+
+            function FillBox(index) {
+                contentList = bingoContent;
+                prefix = "";
+
+                if (index == 12) {
+                    contentList = freeSpaces;
+                    prefix = "FREE SPACE:\n";
+                }
+
+                if (boxContentIndexes.length > index) {
+                    FillBoxFromStorage(index);
+                    return;
+                }
+                
+                randomIndex = Math.floor(Math.random() * contentList.length);
+                while (boxContentIndexes.includes(randomIndex))
+                    randomIndex = Math.floor(Math.random() * contentList.length);
+
+                node = document.createTextNode(prefix + contentList[randomIndex]);
+
+                boxContentIndexes.push(randomIndex);
+            }
+
+            function FillBoxFromStorage(index) {
+                node = document.createTextNode(prefix + contentList[boxContentIndexes[index]]);
+            }
+
+            function AppendBox(index) {
+                para.appendChild(node);
+                boxes[index].appendChild(para);
+                boxes[index].style.setProperty('--n', index%5+index/5);
+
+                boxes[index].addEventListener("mousedown", (event) => {
+                    ClickBox(event.target.classList, index);
+                });
+            }
+
+            function ClickBox(classList, index) {
+                ToggleClass(classList, "clicked")
+                    
+                boxesClicked[index] = classList.contains("clicked");
+                localStorage.setItem("boxesClicked", JSON.stringify(boxesClicked));
+
+                CheckForLineComplete();
+            }
+
+            function ToggleClass(classList, className) {
+                if (!classList.contains(className))
+                        classList.add(className);
+                    else
+                        classList.remove(className);
+            }
+
+            function SetClassActive(classList, className, active) {
+                if (active) 
+                    classList.add(className);
+                else {
+                    if (classList.contains(className))
+                        classList.remove(className);
+                }
+            }
+            
             function CheckHorizontal() {
                 for (let x = 0; x<5; x++) {
                     lineClear = true;
@@ -307,12 +313,7 @@
                     }
 
                     for (let y = 0; y<5; y++) {
-                        if (lineClear)
-                            boxes[y*5+x].classList.add("cleared");
-                        else {
-                            if (boxes[y*5+x].classList.contains("cleared"))
-                                boxes[y*5+x].classList.remove("cleared");
-                        }
+                        SetClassActive(boxes[y*5+x].classList, "cleared", lineClear);
                     }
                 }
             }
@@ -351,13 +352,6 @@
                         boxes[j*(6-2*i)].classList.add("cleared");
                     }
                 }
-            }
-
-            function getRandom(a) {
-                a |= 0; a = a + 0x9e3779b9 | 0;
-                var t = a ^ a >>> 16; t = Math.imul(t, 0x21f0aaad);
-                    t = t ^ t >>> 15; t = Math.imul(t, 0x735a2d97);
-                return ((t = t ^ t >>> 15) >>> 0) / 4294967296;
             }
         </script>
     </body>
