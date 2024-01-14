@@ -56,17 +56,15 @@ function ResetBoard() {
 }
 
 function MergeContentLists() {
-    listToMerge = [];
-    if (date.getDay() == 6)
-        listToMerge = saturdayList;
-    else if (date.getDay() == 0)
-        listToMerge = sundayList;
-    else 
-        listToMerge = weekdayList;
+    dayToEuropeanStandard = (6 + date.getDay()) % 7;
+    listsToMerge = dayList[dayToEuropeanStandard];
 
     LimitListLength(); // To allow modifying lists during day
 
-    mergedList = [...bingoContent, ...listToMerge];
+    mergedList = bingoContent;
+    for (let i=0; i<listsToMerge.length; i++) {
+        mergedList = [...mergedList, ...listsToMerge[i]];
+    }
 }
 
 function LimitListLength() {
@@ -75,14 +73,20 @@ function LimitListLength() {
         listLengthLimits = JSON.parse(localStorage.getItem("ListLengthLimits"));
 
         bingoContent.length = listLengthLimits[0];
-        listToMerge.length = listLengthLimits[1];
+        for (let i=1; i<listLengthLimits.length; i++)
+            listsToMerge.length = listLengthLimits[i];
     } 
     else {
-        listLengthLimits.push(bingoContent.length);
-        listLengthLimits.push(listToMerge.length);
-
-        localStorage.setItem("ListLengthLimits", JSON.stringify(listLengthLimits));
+        SaveLengthLimits();
     }
+}
+
+function SaveLengthLimits() {
+    listLengthLimits.push(bingoContent.length);
+    for (let i=0; i<listsToMerge.length; i++)
+        listLengthLimits.push(listsToMerge[i].length);
+
+    localStorage.setItem("ListLengthLimits", JSON.stringify(listLengthLimits));
 }
 
 function FillClickList() {
@@ -112,29 +116,30 @@ function FillClickListFromStorage() {
 
 function FillBox(index) {
     contentList = mergedList;
-    prefix = "";
 
+    contentIndex = 0;
+    if (boxContentIndexes.length > index)
+        contentIndex = boxContentIndexes[index];
+    else {
+        contentIndex = GetRandomContentIndex();
+        boxContentIndexes.push(contentIndex);
+    }
+
+    prefix = "";
     if (index == 12) {
         contentList = freeSpaces;
         prefix = "FREE SPACE:\n";
     }
-
-    if (boxContentIndexes.length > index) {
-        FillBoxFromStorage(index);
-        return;
-    }
     
+    node = document.createTextNode(prefix + contentList[contentIndex]);
+}
+
+function GetRandomContentIndex() {
     randomIndex = Math.floor(Math.random() * contentList.length);
     while (boxContentIndexes.includes(randomIndex))
         randomIndex = Math.floor(Math.random() * contentList.length);
 
-    node = document.createTextNode(prefix + contentList[randomIndex]);
-
-    boxContentIndexes.push(randomIndex);
-}
-
-function FillBoxFromStorage(index) {
-    node = document.createTextNode(prefix + contentList[boxContentIndexes[index]]);
+    return randomIndex;
 }
 
 function AppendBox(index) {

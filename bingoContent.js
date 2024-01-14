@@ -34,18 +34,28 @@ bingoContent = [
 ];
 
 weekdayList = [
-    "'Du er en ..!' - Claus",
-    "Tove sier 'Gummisalen' eller 'bulkegjengen'",
     "10 folk rekker ikke morgenmøte",
-    "Claus titter over brillene sine",
-    "Vegard ber folk ta føttene ned fra setene",
     "Ord for dagen møter ikke opp",
     "Hans-Thore-latter",
-    "Tove banner",
-    "Nytt Johann sitat",
-    "Lærer Adrian jobber på rollespill i timen",
-    "Ragnhild nevner barna sine og stønner tungt"
 ];
+
+linjefagList = [
+    "'Du er en ..!' - Claus",
+    "Claus titter over brillene sine",
+    "Ragnhild nevner barna sine og stønner tungt",
+    "Lærer Adrian jobber på rollespill i timen",
+    "Nytt Johann sitat",
+];
+
+valgfagList = [
+    "Tove banner",
+    "Tove sier 'Gummisalen' eller 'bulkegjengen'",
+]
+
+fridayList = [
+    "Det er tomt for krem til kakaoen",
+    "Vegard ber folk om å ta føttene ned fra setene",
+]
 
 saturdayList = [
     "Suppe til middag",
@@ -65,4 +75,14 @@ freeSpaces = [
     "Undergangdusjen er opptatt",
     "Helene og Matteo er hyped over gatcha",
     "Cosplay er tomme for gaffateip"
+];
+
+dayList = [
+    [weekdayList, linjefagList],
+    [weekdayList, valgfagList],
+    [weekdayList, linjefagList],
+    [weekdayList, valgfagList],
+    [weekdayList, linjefagList, fridayList],
+    [saturdayList],
+    [sundayList]
 ];
