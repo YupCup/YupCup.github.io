@@ -72,16 +72,15 @@ function ResetOldBoard() {
 }
 
 function MergeFreespaceContentLists() {
-    mergedFreespaceList = freeSpaces;
-    mergedFreespaceList = MergeContentLists(mergedFreespaceList, freeSpacesDayList, "FreeSpaceListLengthLimits");
+    mergedFreespaceList = MergeContentLists(freeSpacesDayList, "FreeSpaceListLengthLimits");
 }
 
 function MergeMainContentLists() {
-    mergedList = bingoContent;
-    mergedList = MergeContentLists(mergedList, dayList, "ListLengthLimits");
+    mergedList = MergeContentLists(dayList, "ListLengthLimits");
 }
 
-function MergeContentLists(_mergedList, _dayList, localStorageName) {
+function MergeContentLists(_dayList, localStorageName) {
+    _mergedList = []
     dayToEuropeanStandard = (6 + date.getDay()) % 7;
     listsToMerge = _dayList[dayToEuropeanStandard];
 
@@ -91,7 +90,6 @@ function MergeContentLists(_mergedList, _dayList, localStorageName) {
         _mergedList = [..._mergedList, ...listsToMerge[i]];
     }
 
-    console.log(_mergedList.length)
     return _mergedList;
 }
 
@@ -100,8 +98,7 @@ function LimitListLength(localStorageName) {
     if (localStorage.getItem(localStorageName) != null) {
         listLengthLimits = JSON.parse(localStorage.getItem(localStorageName));
 
-        bingoContent.length = listLengthLimits[0];
-        for (let i=1; i<listsToMerge.length; i++)
+        for (let i=0; i<listsToMerge.length; i++)
             listsToMerge[i].length = listLengthLimits[i];
     } 
     else {

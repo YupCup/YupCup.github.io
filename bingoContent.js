@@ -82,22 +82,22 @@ freeSpacesWeekend = [
 ];
 
 dayList = [
-    [weekdayList, linjefagList],
-    [weekdayList, valgfagList],
-    [weekdayList, linjefagList],
-    [weekdayList, valgfagList],
-    [weekdayList, linjefagList, fridayList],
-    [saturdayList],
-    [sundayList]
+    [bingoContent, weekdayList, linjefagList],
+    [bingoContent, weekdayList, valgfagList],
+    [bingoContent, weekdayList, linjefagList],
+    [bingoContent, weekdayList, valgfagList],
+    [bingoContent, weekdayList, linjefagList, fridayList],
+    [bingoContent, saturdayList],
+    [bingoContent, sundayList]
 ];
 
 freeSpacesDayList = [
-    [freeSpacesWeekday],
-    [freeSpacesWeekday],
-    [freeSpacesWeekday],
-    [freeSpacesWeekday],
-    [freeSpacesWeekday],
+    [freeSpaces, freeSpacesWeekday],
+    [freeSpaces, freeSpacesWeekday],
+    [freeSpaces, freeSpacesWeekday],
+    [freeSpaces, freeSpacesWeekday],
+    [freeSpaces, freeSpacesWeekday],
     
-    [freeSpacesWeekend],
-    [freeSpacesWeekend]
+    [freeSpaces, freeSpacesWeekend],
+    [freeSpaces, freeSpacesWeekend]
 ]
