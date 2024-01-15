@@ -8,7 +8,7 @@ bingoContent = [
     "Romskipelev bærer på noe rart",
     "Halvparten av CG har på joggebukse",
     "Kampmusikk på treningsrommet",
-    "Du får bare ris til restemiddag",
+    "Det er bygningsarbeidere i spisesalen",
     "Boffen spinner en frisbee på fingeren",
     "Vebjørn lager grimaser",
     "Rasmus OG Sami sitter på kunstrommet",
@@ -53,8 +53,8 @@ valgfagList = [
 ]
 
 fridayList = [
-    "Det er tomt for krem til kakaoen",
     "Vegard ber folk om å ta føttene ned fra setene",
+    "Du får bare ris til restemiddag"
 ]
 
 saturdayList = [
