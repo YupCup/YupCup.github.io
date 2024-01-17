@@ -23,20 +23,23 @@ bingoContent = [
     "Noen er i drag",
     "Mikan mister noe",
     "Emil klager over Dark Souls 2",
-    "Egg til frokost",
+    "Egg til frokost/lunsj!! :D",
     "Noen rager på Esport",
     "Joya og John siterer Joya og John",
     "Romskip jobber ekstremt overtid",
     "Adele sitter uergonomisk",
     "Daniel blir sint på fotball på hemsen",
     "Kjøkkentjenesten ser døde ut",
-    "Esport Mjauer"
+    "Esport Mjauer",
+    "Spisesal 2 er åpen når den vanligvis ikke er",
+    "Det er tomt og kaldt i peisestua"
 ];
 
 weekdayList = [
     "10 folk rekker ikke morgenmøte",
     "Ord for dagen møter ikke opp",
     "Hans-Thore-latter",
+    "Knuta roper en fun fact"
 ];
 
 linjefagList = [
@@ -45,6 +48,7 @@ linjefagList = [
     "Ragnhild nevner barna sine og stønner tungt",
     "Lærer Adrian jobber på rollespill i timen",
     "Nytt Johann sitat",
+    "Vegard peker på taket imens han snakker"
 ];
 
 valgfagList = [
