@@ -151,9 +151,10 @@ function FillBox(index) {
     if (boxContentIndexes.length > index) {
         contentIndex = boxContentIndexes[index];
         
-        if (contentIndex >= contentList.length) {
+        if (contentList[contentIndex] == null) {
             ResetBoard();
             location.reload();
+            return;
         }
     }
     else {
