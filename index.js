@@ -98,8 +98,9 @@ function LimitListLength(localStorageName) {
     if (localStorage.getItem(localStorageName) != null) {
         listLengthLimits = JSON.parse(localStorage.getItem(localStorageName));
 
-        for (let i=0; i<listsToMerge.length; i++)
+        for (let i=0; i<listsToMerge.length; i++) {
             listsToMerge[i].length = listLengthLimits[i];
+        }
     } 
     else {
         SaveLengthLimits(localStorageName);
@@ -107,7 +108,6 @@ function LimitListLength(localStorageName) {
 }
 
 function SaveLengthLimits(localStorageName) {
-    listLengthLimits.push(bingoContent.length);
     for (let i=0; i<listsToMerge.length; i++)
         listLengthLimits.push(listsToMerge[i].length);
 
