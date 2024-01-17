@@ -148,8 +148,14 @@ function FillBox(index) {
     }
 
     contentIndex = 0;
-    if (boxContentIndexes.length > index)
+    if (boxContentIndexes.length > index) {
         contentIndex = boxContentIndexes[index];
+        
+        if (contentIndex >= contentList.length) {
+            ResetBoard();
+            location.reload();
+        }
+    }
     else {
         contentIndex = GetRandomContentIndex();
         boxContentIndexes.push(contentIndex);
