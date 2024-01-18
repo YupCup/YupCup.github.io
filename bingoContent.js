@@ -36,7 +36,8 @@ bingoContent = [
     "Kjøkkentjeneste har på neoncap",
     "Du hører naboene gjennom veggen etter stilletid",
     "Undervisningsbygget holdes oppe lenge",
-    "Skrymir sier 'yeez'"
+    "Skrymir sier 'yeez'",
+    "Ny sexvits i elev-quotes",
 ];
 
 weekdayList = [
@@ -77,9 +78,9 @@ freeSpaces = [
     "Jacob sier en dårlig vits",
     "Skrymir spiller Mario Kart",
     "CG gamer i mørket",
-    "Ny sexvits i elev-quotes",
     "Undergangdusjen er opptatt",
-    "Cosplay er tomme for gaffateip"
+    "Cosplay er tomme for gaffateip",
+    "Noen sitter over tiden til middag"
 ];
 
 freeSpacesWeekday = [
