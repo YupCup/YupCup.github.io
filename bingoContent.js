@@ -14,7 +14,7 @@ bingoContent = [
     "Rasmus OG Sami sitter på kunstrommet",
     "Snorre spiller Beatsaber",
     "Tegneserie tegner Hafsteinn",
-    "Allsang i dusjen",
+    "Gauling i dusjen",
     "RM-soundtrack i vaskekjelleren",
     "Vaskekjelleren er full",
     "Du blir låst ute om kvelden",
@@ -23,7 +23,7 @@ bingoContent = [
     "Noen er i drag",
     "Mikan mister noe",
     "Emil klager over Dark Souls 2",
-    "Egg til frokost/lunsj!! :D",
+    "Egg til frokost/lunsj!",
     "Noen rager på Esport",
     "Joya og John siterer Joya og John",
     "Romskip jobber ekstremt overtid",
@@ -32,7 +32,11 @@ bingoContent = [
     "Kjøkkentjenesten ser døde ut",
     "Esport Mjauer",
     "Spisesal 2 er åpen når den vanligvis ikke er",
-    "Det er tomt og kaldt i peisestua"
+    "Det er tomt og kaldt i peisestua",
+    "Kjøkkentjeneste har på neoncap",
+    "Du hører naboene gjennom veggen etter stilletid",
+    "Undervisningsbygget holdes oppe lenge",
+    "Skrymir sier 'yeez'"
 ];
 
 weekdayList = [
