@@ -53,7 +53,8 @@ linjefagList = [
     "Ragnhild nevner barna sine og stønner tungt",
     "Lærer Adrian jobber på rollespill i timen",
     "Nytt Johann sitat",
-    "Vegard peker på taket imens han snakker"
+    "Vegard peker på taket imens han snakker",
+    "Claus kjeder seg"
 ];
 
 valgfagList = [
