@@ -22,7 +22,7 @@ bingoContent = [
     "Feilmelding på tørketrommelen",
     "Noen er i drag",
     "Mikan mister noe",
-    "Emil klager over Dark Souls 2",
+    "Emil har på blå lue",
     "Egg til frokost/lunsj!",
     "Noen rager på Esport",
     "Joya og John siterer Joya og John",
