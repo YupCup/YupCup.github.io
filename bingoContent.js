@@ -8,7 +8,7 @@ bingoContent = [
     "Romskipelev bærer på noe rart",
     "Halvparten av CG har på joggebukse",
     "Kampmusikk på treningsrommet",
-    "Det er bygningsarbeidere i spisesalen",
+    "Det er bygnings-arbeidere i spisesalen",
     "Boffen spinner en frisbee på fingeren",
     "Vebjørn lager grimaser",
     "Rasmus OG Sami sitter på kunstrommet",
@@ -29,13 +29,13 @@ bingoContent = [
     "Romskip jobber ekstremt overtid",
     "Adele sitter uergonomisk",
     "Daniel blir sint på fotball på hemsen",
-    "Kjøkkentjenesten ser døde ut",
+    "Kjøkken-tjenesten ser døde ut",
     "Esport Mjauer",
     "Spisesal 2 er åpen når den vanligvis ikke er",
     "Det er tomt og kaldt i peisestua",
     "Kjøkkentjeneste har på neoncap",
     "Du hører naboene gjennom veggen etter stilletid",
-    "Undervisningsbygget holdes oppe lenge",
+    "UB holdes oppe lenge",
     "Skrymir sier 'yeez'",
     "Ny sexvits i elev-quotes",
 ];
@@ -79,7 +79,7 @@ freeSpaces = [
     "Jacob sier en dårlig vits",
     "Skrymir spiller Mario Kart",
     "CG gamer i mørket",
-    "Undergangdusjen er opptatt",
+    "Undergang-dusjen er opptatt",
     "Cosplay er tomme for gaffateip",
     "Noen sitter over tiden til middag"
 ];
