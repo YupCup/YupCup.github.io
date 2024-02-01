@@ -28,7 +28,7 @@ bingoContent = [
     "Joya og John siterer Joya og John",
     "Romskip jobber ekstremt overtid",
     "Adele sitter uergonomisk",
-    "Daniel blir sint på fotball på hemsen",
+    "Du hører bangern tenke sjæl",
     "Kjøkken-tjenesten ser døde ut",
     "Esport Mjauer",
     "Spisesal 2 er åpen når den vanligvis ikke er",
