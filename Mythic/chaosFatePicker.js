@@ -1,45 +1,6 @@
-let diceResultText = document.getElementById("diceResultText");
-function getDice(magnitude) {
-    let diceResult = Math.ceil(Math.random() * magnitude);
-    diceResultText.innerHTML = diceResult;
-    return diceResult;
-}
-
 function getChaosIndex() {
     return chaosLevel + odds - 2;
 }
-
-function pickRandomFromList(list) {
-    return list[Math.floor(Math.random() * list.length)];
-}
-
-let resultText = document.getElementById("resultText");
-let eventTitleText = document.getElementById("eventTitleText");
-function setResultText(text, eventType="", diceText="") {
-    resultText.innerHTML = text;
-    eventTitleText.innerHTML = eventType;
-    if (diceText != "")
-        diceResultText.innerHTML = "";
-
-    resultText.classList.add("appearAnimation");
-    setTimeout(() => resultText.classList.remove("appearAnimation"), 100)
-}
-
-/* yesNoDangerList = [
-    "No, and...", "No, and...", "No, and...",
-    "No", "No", "No",
-    "No, but!", "No, but!", 
-    "Yes, but...", 
-    "Yes, but...", "Yes, but...",
-    "Yes!", "Yes!", "Yes!", 
-    "Yes, and!", "Yes, and!", "Yes, and!", 
-]
-document.getElementById("yes-no-button").addEventListener("click", yesNo);
-function yesNo() {
-    let chaosIndex = getChaosIndex();
-    chaosIndex += Math.floor((Math.random() * 2.0 - 1) * 4);
-    setResultText(yesNoDangerList[chaosIndex]);
-} */
 
 let fateYes = 
 [0, 0, 0, 1, 2, 3, 5, 7, 10, 13, 15, 17, 18, 19, 20, 20, 20];
@@ -50,6 +11,8 @@ let fateNo =
 
 document.getElementById("fate-button").addEventListener("click", dangerFate);
 function dangerFate() {
+    clearAll();
+
     let diceResult = getDice(100);
     if (checkRandomEvent(diceResult)) {
         return;
@@ -75,10 +38,6 @@ function dangerFate() {
 let eventActionText = document.getElementById("eventAction");
 let eventDescriptionText = document.getElementById("eventDescription");
 
-let eventLocationText = document.getElementById("eventLocation");
-let eventCharactersText = document.getElementById("eventCharacters");
-let eventObjectsText = document.getElementById("eventObjects");
-
 let eventBox = document.getElementById("eventBox");
 
 function checkRandomEvent(diceResult) {
@@ -90,9 +49,9 @@ function checkRandomEvent(diceResult) {
         eventActionText.innerHTML = getRandomEventAdjectives([eventActions1, eventActions2]);
         eventDescriptionText.innerHTML = getRandomEventAdjectives([eventDescriptor1, eventDescriptor2]);
 
-        eventLocationText.innerHTML = getRandomEventAdjectives([eventLocations]);
-        eventCharactersText.innerHTML = getRandomEventAdjectives([eventCharacters]);
-        eventObjectsText.innerHTML = getRandomEventAdjectives([eventObjects]);
+        createEventInfo("forest", getRandomEventAdjectives([eventLocations]));
+        createEventInfo("person", getRandomEventAdjectives([eventCharacters]));
+        createEventInfo("package_2", getRandomEventAdjectives([eventObjects]));
         return true;
     }
     eventBox.style.display = "none";
@@ -108,15 +67,4 @@ function getRandomEventFocus() {
             return randomEventFocus[i][1];
     }
     return randomEventFocus[randomEventFocus.length - 1][1];
-}
-
-function getRandomEventAdjectives(lists) {
-    let adjectives = "";
-    for (let i = 0; i < lists.length; i++) {
-        adjectives += pickRandomFromList(lists[i]);
-        if (i < lists.length - 1)
-            adjectives += ", ";
-    }
-    
-    return adjectives;
 }

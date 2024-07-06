@@ -10,11 +10,16 @@
     filter: hue-rotate(calc((var(--progress-smooth)) * 1deg));
     --bg-color: rgb(129, 129, 220);
     background-color: var(--bg-color);
+    background: linear-gradient(to bottom left, #8f94fb, #676eea);  
+}
+
+.sample {
+    display: none !important;
 }
 
 .horizontal {
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-columns: auto auto auto;
     align-items: center;
     justify-content: center;
     height: 60px;
@@ -35,7 +40,7 @@
 }
 
 button {
-    background: var(--bg-color);
+    background: transparent;
     border: 0px;
     transition-duration: .03s;
     width: 50px;
@@ -43,12 +48,12 @@ button {
 }
 
 button:hover {
-    filter: brightness(85%);
+    background: rgba(36, 36, 36, 0.209);
     border: 0px;
     transition-duration: .1s;
 }
 button:active {
-    filter: brightness(70%);
+    background: rgba(36, 36, 36, 0.409);
     border: 0px;
 }
 

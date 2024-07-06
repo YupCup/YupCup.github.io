@@ -33,40 +33,36 @@
                 <h3 id="diceResultText">0</h3>
                 <div id="eventBox">
                     <div class="horizontal">
-                        <span class="material-symbols-outlined" id="event-button">manufacturing</span>
+                        <span class="material-symbols-outlined">manufacturing</span>
                         <p id="eventAction">Adjective</p>
                     </div>
                     <div class="horizontal">
-                        <span class="material-symbols-outlined" id="event-button">visibility</span>
+                        <span class="material-symbols-outlined">visibility</span>
                         <p id="eventDescription">Adjective</p>
                     </div>
-                    <div class="horizontal">
-                        <div class="horizontal">
-                            <span class="material-symbols-outlined" id="event-button">forest</span>
-                            <p id="eventLocation">Adjective</p>
-                        </div>
-                        <div class="horizontal">
-                            <span class="material-symbols-outlined" id="event-button">person</span>
-                            <p id="eventCharacters">Adjective</p>
-                        </div>
-                        <div class="horizontal">
-                            <span class="material-symbols-outlined" id="event-button">package_2</span>
-                            <p id="eventObjects">Adjective</p>
-                        </div>
+                </div>
+                <div id="eventGeneratorBox" class="horizontal">
+                    <div id="eventInfoSample" class="horizontal sample">
+                        <span class="material-symbols-outlined">forest</span>
+                        <p>Adjective</p>
                     </div>
                 </div>
             </div>
 
             <div id="actionButtonRow">
                 <button class="material-symbols-outlined" id="event-button">map</button>
+                <button class="material-symbols-outlined" id="environment-button">forest</button>
                 <button class="material-symbols-outlined" id="fate-button">theater_comedy</button>
                 <button class="material-symbols-outlined" id="character-button">comedy_mask</button>
+                <button class="material-symbols-outlined" id="creature-button">raven</button>
             </div>
         </div>
         
+        <script src="main.js"> </script>
         <script src="chaos.js"> </script>
         <script src="lists.js"> </script>
-        <script src="tables.js"> </script>
+        <script src="eventGenerator.js"> </script>
+        <script src="chaosFatePicker.js"> </script>
         <script src="init.js"></script>
 
 </body>
