@@ -1,4 +1,5 @@
 let diceResultText = document.getElementById("diceResultText");
+
 function getDice(magnitude) {
     let diceResult = Math.ceil(Math.random() * magnitude);
     diceResultText.innerHTML = diceResult;
@@ -35,8 +36,18 @@ function setNameReroll(func, Category) {
 }
 
 let initialEventStyle = eventGeneratorBox.style.gridTemplateColumns;
+let card = document.getElementById("card");
+let cardHolder = document.getElementById("cardHolder");
+let timesCleared = 0;
 
 function clearAll() {
+    timesCleared ++;
+    if (timesCleared == 1)
+        return;
+/* 
+    var newCard = card.cloneNode(true);
+    cardHolder.appendChild(newCard); */
+
     console.log("uh");
     eventGeneratorBox.style.gridTemplateColumns = initialEventStyle;
     clearEventInfo();
