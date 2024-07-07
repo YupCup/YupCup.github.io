@@ -125,7 +125,7 @@ document.getElementById("object-button").addEventListener("click", generateObjec
 function generateObject() {
     clearAll();
     setResultText(getRandomFromLists([objects]), "iron", "Object", true);
-    setNameReroll(() => setResultText(generateName(), "forest", "Environment"));
+    setNameReroll(() => setResultText(getRandomFromLists([objects]), "iron", "Object"));
 
     createRandomEventInfo("destruction", [damage]);
     let diceResult = getDice(10);
