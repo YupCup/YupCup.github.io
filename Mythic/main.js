@@ -18,14 +18,29 @@ function setResultText(text, eventType="", diceText="") {
     if (diceText != "")
         diceResultText.innerHTML = "";
 
-    resultText.classList.add("appearAnimation");
-    setTimeout(() => resultText.classList.remove("appearAnimation"), 100)
+    applyAppearAnimation(resultText);
+}
+
+function applyAppearAnimation(node) {
+    node.classList.add("appearAnimation");
+    setTimeout(() => node.classList.remove("appearAnimation"), 100)
+}
+
+function setNameReroll(func, Category) {
+    resultText.addEventListener("click", func, Category, true);
+    resultText.style.cursor = "pointer";
 }
 
 let initialEventStyle = eventGeneratorBox.style.gridTemplateColumns;
 
 function clearAll() {
-    eventBox.style.display = "none";
+    console.log("uh");
     eventGeneratorBox.style.gridTemplateColumns = initialEventStyle;
     clearEventInfo();
+
+    resultText.style.cursor = "auto";
+
+    var old_element = resultText;
+    resultText = old_element.cloneNode(true);
+    old_element.parentNode.replaceChild(resultText, old_element);
 }

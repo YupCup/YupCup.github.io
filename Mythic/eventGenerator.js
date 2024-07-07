@@ -1,15 +1,33 @@
 eventInfoSample = document.getElementById("eventInfoSample");
 eventGeneratorBox = document.getElementById("eventGeneratorBox");
 
-function createEventInfo(icon, text) {
+function createSingleLineEventInfo(icon, list) {
+    createRandomEventInfo(icon, list);
+
+    eventGeneratorBox.children[eventGeneratorBox.children.length - 1].style.gridColumnStart = "span 6";
+}
+
+function createRandomEventInfo(icon, list) {
     eventGeneratorBox.style.display = "inline-grid";
     const newEventInfo = eventInfoSample.cloneNode(true);
     newEventInfo.classList.remove("sample");
-
-    newEventInfo.children[0].innerHTML = icon;
-    newEventInfo.children[1].innerHTML = text;
+    
+    randomizeEventInfo(icon, list, newEventInfo);
 
     eventGeneratorBox.appendChild(newEventInfo);
+    newEventInfo.addEventListener("click", () => rerollEvent(icon, list, newEventInfo));
+    newEventInfo.children[0].addEventListener("click", () => rerollEvent(icon, list, newEventInfo));
+    newEventInfo.children[1].addEventListener("click", () => rerollEvent(icon, list, newEventInfo));
+}
+
+function randomizeEventInfo(icon, list, eventInfo) {
+    eventInfo.children[0].innerHTML = icon;
+    eventInfo.children[1].innerHTML = getRandomEventAdjectives(list);
+}
+
+function rerollEvent(icon, list, eventInfo) {
+    randomizeEventInfo(icon, list, eventInfo);
+    applyAppearAnimation(eventInfo);
 }
 
 function setEventsPerLine(amount) {
@@ -29,15 +47,15 @@ document.getElementById("event-button").addEventListener("click", generateEvent)
 
 function generateEvent() {
     clearAll();
-    eventBox.style.display = "inline";
 
     setResultText(getRandomEventFocus(), "Event", true);
-    eventActionText.innerHTML = getRandomEventAdjectives([eventActions1, eventActions2]);
-    eventDescriptionText.innerHTML = getRandomEventAdjectives([eventDescriptor1, eventDescriptor2]);
 
-    createEventInfo("forest", getRandomEventAdjectives([eventLocations]));
-    createEventInfo("person", getRandomEventAdjectives([eventCharacters]));
-    createEventInfo("package_2", getRandomEventAdjectives([eventObjects]));
+    createSingleLineEventInfo("manufacturing", [eventActions1, eventActions2]);
+    createSingleLineEventInfo("visibility", [eventDescriptor1, eventDescriptor2]);
+
+    createRandomEventInfo("forest", [eventLocations]);
+    createRandomEventInfo("person", [eventCharacters]);
+    createRandomEventInfo("package_2", [eventObjects]);
 }
 
 document.getElementById("character-button").addEventListener("click", generateCharacter);
@@ -45,13 +63,14 @@ document.getElementById("character-button").addEventListener("click", generateCh
 function generateCharacter() {
     clearAll();
     setResultText(generateName() + " " + generateName(), "Character", true);
+    setNameReroll(() => setResultText(generateName() + " " + generateName(), "Character"));
 
-    createEventInfo("face_3", getRandomEventAdjectives([characterAppearances]));
-    createEventInfo("accessibility_new", getRandomEventAdjectives([characterDescriptors]));
-    createEventInfo("person_apron", getRandomEventAdjectives([characterIdentities]));
-    createEventInfo("history", getRandomEventAdjectives([characterBackgrounds]));
-    createEventInfo("local_fire_department", getRandomEventAdjectives([characterMotivations]));
-    createEventInfo("voice_selection", getRandomEventAdjectives([characterPersonalities]));
+    createRandomEventInfo("face_3", [characterAppearances]);
+    createRandomEventInfo("accessibility_new", [characterDescriptors]);
+    createRandomEventInfo("person_apron", [characterIdentities]);
+    createRandomEventInfo("history", [characterBackgrounds]);
+    createRandomEventInfo("local_fire_department", [characterMotivations]);
+    createRandomEventInfo("voice_selection", [characterPersonalities]);
 }
 
 function generateName() {
@@ -66,12 +85,14 @@ document.getElementById("creature-button").addEventListener("click", generateBea
 function generateBeast() {
     clearAll();
     setResultText(generateName(), "Creature", true);
-    createEventInfo("visibility", getRandomEventAdjectives([creatureDescriptions]));
-    createEventInfo("aspect_ratio", getRandomEventAdjectives([sizes]));
-    createEventInfo("local_fire_department", getRandomEventAdjectives([characterMotivations]));
+    setNameReroll(() => setResultText(generateName(), "Creature"));
+
+    createRandomEventInfo("visibility", [creatureDescriptions]);
+    createRandomEventInfo("aspect_ratio", [sizes]);
+    createRandomEventInfo("local_fire_department", [characterMotivations]);
     createEmptyEvent();
-    createEventInfo("swords", getRandomEventAdjectives([creatureAbilities]));
-    createEventInfo("bolt", getRandomEventAdjectives([powers]));
+    createRandomEventInfo("swords", [creatureAbilities]);
+    createRandomEventInfo("bolt", [powers]);
 
 }
 
@@ -79,10 +100,11 @@ document.getElementById("environment-button").addEventListener("click", generate
 function generateTerrain() {
     clearAll();
     setResultText(generateName(), "Environment", true);
+    setNameReroll(() => setResultText(generateName(), "Environment"));
 
-    createEventInfo("forest", getRandomEventAdjectives([terrainDescriptors]));
-    createEventInfo("oxygen_saturation", getRandomEventAdjectives([smells]));
-    createEventInfo("hearing", getRandomEventAdjectives([sounds]));
+    createRandomEventInfo("forest", [terrainDescriptors]);
+    createRandomEventInfo("oxygen_saturation", [smells]);
+    createRandomEventInfo("hearing", [sounds]);
 }
 
 function getRandomEventAdjectives(lists) {

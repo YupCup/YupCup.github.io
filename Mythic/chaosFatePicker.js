@@ -77,11 +77,6 @@ function dangerFate(odds) {
     setResultText("No");
 }
 
-let eventActionText = document.getElementById("eventAction");
-let eventDescriptionText = document.getElementById("eventDescription");
-
-let eventBox = document.getElementById("eventBox");
-
 function checkRandomEvent(diceResult) {
     let diceString = diceResult.toString();
     if (diceString[0] == diceString[1] && parseInt(diceString[0]) <= chaosLevel) {
@@ -89,7 +84,6 @@ function checkRandomEvent(diceResult) {
         setResultText(getRandomEventFocus(), "Random Event", true);
         return true;
     }
-    eventBox.style.display = "none";
     return false;
 }
 
