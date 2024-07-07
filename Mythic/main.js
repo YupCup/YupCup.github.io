@@ -9,12 +9,15 @@ function pickRandomFromList(list) {
     return list[Math.floor(Math.random() * list.length)];
 }
 
+let resultDiv = document.getElementById("resultDiv");
 let resultText = document.getElementById("resultText");
+let eventIcon = document.getElementById("eventIcon");
 let eventTitleText = document.getElementById("eventTitleText");
 
-function setResultText(text, eventType="", diceText="") {
+function setResultText(text, icon, eventType="", diceText="") {
     resultText.innerHTML = text;
     eventTitleText.innerHTML = eventType;
+    eventIcon.innerHTML = icon;
     if (diceText != "")
         diceResultText.innerHTML = "";
 
@@ -43,4 +46,5 @@ function clearAll() {
     var old_element = resultText;
     resultText = old_element.cloneNode(true);
     old_element.parentNode.replaceChild(resultText, old_element);
+    applyAppearAnimation(resultDiv);
 }

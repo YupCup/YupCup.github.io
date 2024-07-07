@@ -50,6 +50,7 @@ function hoverElement(change) {
     }
 }
 
+let oddsTitles = ["Impossible", "Unlikely", "50/50", "Likely", "Certain"]
 
 function dangerFate(odds) {
     clearAll();
@@ -61,27 +62,29 @@ function dangerFate(odds) {
     }
 
     let fateIndex = getChaosIndex(odds);
+    let icon = "theater_comedy";
+    let oddsText = oddsTitles[odds - 1];
 
     if (diceResult < fateYes[fateIndex]) {
-        setResultText("Definite YES!");
+        setResultText("Definite YES!", icon, oddsText);
         return;
     }
     if (diceResult < fateBase[fateIndex]) {
-        setResultText("Yes");
+        setResultText("Yes", icon, oddsText);
         return;
     }
     if (diceResult > fateNo[fateIndex]) {
-        setResultText("Definite NO!");
+        setResultText("Definite NO!", icon, oddsText);
         return;
     }
-    setResultText("No");
+    setResultText("No", icon, oddsText);
 }
 
 function checkRandomEvent(diceResult) {
     let diceString = diceResult.toString();
     if (diceString[0] == diceString[1] && parseInt(diceString[0]) <= chaosLevel) {
         generateEvent();
-        setResultText(getRandomEventFocus(), "Random Event", true);
+        setResultText(getRandomEventFocus(), "theater_comedy", "Random Event", true);
         return true;
     }
     return false;
