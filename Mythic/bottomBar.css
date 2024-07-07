@@ -1,0 +1,47 @@
+
+#buttonBar {
+    display: grid;
+    height: fit-content;
+    justify-content: center;
+
+    gap: 22px;
+}
+
+#actionButtonRow {
+    min-width: 800px !important;
+    display: flex;
+    align-self: flex-end;
+    justify-content: space-around;
+    padding-bottom: 10vh;
+}
+
+#actionButtonRow button {
+    min-width: 100px;
+    height: 100px;
+    font-size: 1.5em;
+}
+
+
+#oddsBar {
+    background-color: rgba(215, 241, 250, 0.28);
+    outline: rgba(230, 253, 255, 0.298) solid 2px;
+    border-radius: 10px;
+
+    width: fit-content;
+    height: fit-content;
+    align-self: flex-end;
+    justify-self: center;
+
+    margin-bottom: -20px;
+    transition-duration: .2s;
+}
+#oddsBar:hover {
+    background-color: rgba(215, 241, 250, 0.57);
+    outline: rgba(230, 253, 255, 0.56) solid 2px;
+}
+
+#oddsBar button {
+    min-width: 100px;
+    height: 100px;
+    font-size: 1.5em;
+}

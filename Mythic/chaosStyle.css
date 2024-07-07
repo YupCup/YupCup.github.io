@@ -1,0 +1,41 @@
+
+#dangerDiv {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    
+    justify-content: center;
+    align-items: center;
+}
+
+#dangerDiv button {
+    width: 100px;
+    height: 100px;
+}
+
+.material-symbols-outlined {
+    font-size: larger;
+    text-align: center;
+    color: #211e32;
+}
+
+#dangerDiceDiv {
+    width: 150px;
+    height: 150px;
+    background-image: url(d20.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: 15px;
+    margin-right: 15px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#dangerText {
+    /* font-size: calc(40px - round(down, var(--progress), 49 + var(--progress)/50)*0.3px); */
+    font-size: 1.5em;
+    color: #585A59;
+    user-select: none;
+}

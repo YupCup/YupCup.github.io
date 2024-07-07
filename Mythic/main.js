@@ -22,8 +22,10 @@ function setResultText(text, eventType="", diceText="") {
     setTimeout(() => resultText.classList.remove("appearAnimation"), 100)
 }
 
+let initialEventStyle = eventGeneratorBox.style.gridTemplateColumns;
+
 function clearAll() {
     eventBox.style.display = "none";
-    eventGeneratorBox.style.gridTemplateColumns = "auto auto auto";
+    eventGeneratorBox.style.gridTemplateColumns = initialEventStyle;
     clearEventInfo();
 }

@@ -2,7 +2,7 @@ eventInfoSample = document.getElementById("eventInfoSample");
 eventGeneratorBox = document.getElementById("eventGeneratorBox");
 
 function createEventInfo(icon, text) {
-    eventGeneratorBox.style.display = "grid";
+    eventGeneratorBox.style.display = "inline-grid";
     const newEventInfo = eventInfoSample.cloneNode(true);
     newEventInfo.classList.remove("sample");
 
@@ -10,6 +10,15 @@ function createEventInfo(icon, text) {
     newEventInfo.children[1].innerHTML = text;
 
     eventGeneratorBox.appendChild(newEventInfo);
+}
+
+function setEventsPerLine(amount) {
+    eventGeneratorBox.style.gridTemplateColumns = "repeat(" + (amount*2) + ", 1fr)"
+}
+
+function createEmptyEvent() {
+    var br = document.createElement("br");
+    eventGeneratorBox.appendChild(br);
 }
 
 function clearEventInfo() {
@@ -57,13 +66,13 @@ document.getElementById("creature-button").addEventListener("click", generateBea
 function generateBeast() {
     clearAll();
     setResultText(generateName(), "Creature", true);
-
-    eventGeneratorBox.style.gridTemplateColumns = "auto auto";
-
     createEventInfo("visibility", getRandomEventAdjectives([creatureDescriptions]));
     createEventInfo("aspect_ratio", getRandomEventAdjectives([sizes]));
+    createEventInfo("local_fire_department", getRandomEventAdjectives([characterMotivations]));
+    createEmptyEvent();
     createEventInfo("swords", getRandomEventAdjectives([creatureAbilities]));
     createEventInfo("bolt", getRandomEventAdjectives([powers]));
+
 }
 
 document.getElementById("environment-button").addEventListener("click", generateTerrain);
@@ -73,6 +82,7 @@ function generateTerrain() {
 
     createEventInfo("forest", getRandomEventAdjectives([terrainDescriptors]));
     createEventInfo("oxygen_saturation", getRandomEventAdjectives([smells]));
+    createEventInfo("hearing", getRandomEventAdjectives([sounds]));
 }
 
 function getRandomEventAdjectives(lists) {

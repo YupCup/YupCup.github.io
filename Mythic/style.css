@@ -30,53 +30,23 @@
 
 .horizontal {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto;
     align-items: center;
     justify-content: center;
     height: 60px;
     
     gap: 5px;
+    flex-wrap: wrap;
 }
 
-#dangerDiv {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    
+#eventGeneratorBox {
     justify-content: center;
-    align-items: center;
+    grid-template-columns: repeat(6, 1fr);
+    width: fit-content;
+    justify-self: center;
 }
-
-#dangerDiv button {
-    width: 100px;
-    height: 100px;
-}
-
-.material-symbols-outlined {
-    font-size: larger;
-    text-align: center;
-    color: #211e32;
-}
-
-#dangerDiceDiv {
-    width: 150px;
-    height: 150px;
-    background-image: url(d20.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    margin-left: 15px;
-    margin-right: 15px;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#dangerText {
-    /* font-size: calc(40px - round(down, var(--progress), 49 + var(--progress)/50)*0.3px); */
-    font-size: 1.5em;
-    color: #585A59;
-    user-select: none;
+#eventGeneratorBox div {
+    grid-column-start: span 2;
 }
 
 button {
@@ -96,6 +66,7 @@ button:active {
     background: rgba(36, 36, 36, 0.409);
     border: 0px;
 }
+
 
 #resultDiv {
     align-self: center;
@@ -118,28 +89,11 @@ button:active {
     grid-template-columns: auto auto auto auto;
 }
 
-#buttonBar {
-    display: grid;
-    height: fit-content;
-    justify-content: center;
-
-    gap: 22px;
+.center {
+    width: 100%;
+    justify-content: center !important;
 }
-
-#actionButtonRow {
-    min-width: 800px !important;
-    display: flex;
-    align-self: flex-end;
-    justify-content: space-around;
-    padding-bottom: 10vh;
-}
-
-#actionButtonRow button {
-    min-width: 100px;
-    height: 100px;
-    font-size: 1.5em;
-}
-
+  
 .appearAnimation {
     animation-name: textChange;
     animation-duration: .1s;
@@ -148,31 +102,6 @@ button:active {
     animation-fill-mode: forwards;
 }
 
-#oddsBar {
-    background-color: rgba(215, 241, 250, 0.28);
-    outline: rgba(230, 253, 255, 0.298) solid 2px;
-    border-radius: 10px;
-
-    width: fit-content;
-    height: fit-content;
-    align-self: flex-end;
-    justify-self: center;
-
-    margin-bottom: -20px;
-    transition-duration: .2s;
-}
-#oddsBar:hover {
-    background-color: rgba(215, 241, 250, 0.57);
-    outline: rgba(230, 253, 255, 0.56) solid 2px;
-}
-
-#oddsBar button {
-    min-width: 100px;
-    height: 100px;
-    font-size: 1.5em;
-}
-
-  
 @keyframes textChange {
     from {
         transform: rotate(10deg) scale(0) skew(10deg);
