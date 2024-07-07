@@ -2242,8 +2242,7 @@ let objects = [
     "String",
     "Gloves",
     "Helmet",
-    "Boots",
-    ""
+    "Boots"
 ];
 
 let damage = [
@@ -2467,5 +2466,12 @@ let damages = [
     "Begrimed", 
     "Sullied", 
     "Rotted", 
-    "Worn"
+    "Worn",
+    "Wet",
+    "Rotten",
+    "Grimy",
+    "Soaked",
+    "Tiny",
+    "Threadbare",
+    "Janky"
 ];
