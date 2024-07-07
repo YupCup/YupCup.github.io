@@ -1,5 +1,5 @@
 function getChaosIndex(odds) {
-    return chaosLevel + odds - 2;
+    return chaosFactor + odds - 2;
 }
 /* 
 let fateYes = 
@@ -33,9 +33,17 @@ function toggleOddsBar() {
 }
 
 document.getElementById("fate-button").addEventListener("mouseenter", ()=>hoverElement(1));
-document.getElementById("oddsBar").addEventListener("mouseenter", ()=>hoverElement(1));
 document.getElementById("fate-button").addEventListener("mouseleave", ()=>hoverElement(-1));
-document.getElementById("oddsBar").addEventListener("mouseleave", ()=>hoverElement(-1));
+oddsBar.addEventListener("mouseenter", ()=>hoverOddsbarIfActive(1));
+oddsBar.addEventListener("mouseleave", ()=>hoverOddsbarIfActive(-1));
+
+function hoverOddsbarIfActive(change) {
+    if (oddsBar.style.visibility == "hidden")
+        return;
+
+    hoverElement(change);
+}
+
 let hoverAmount = 0;
 let hideID = "a";
 function hoverElement(change) {
@@ -82,7 +90,7 @@ function dangerFate(odds) {
 
 function checkRandomEvent(diceResult) {
     let diceString = diceResult.toString();
-    if (diceString[0] == diceString[1] && parseInt(diceString[0]) <= chaosLevel) {
+    if (diceString[0] == diceString[1] && parseInt(diceString[0]) <= chaosFactor) {
         generateEvent();
         setResultText(getRandomEventFocus(), "theater_comedy", "Random Event", true);
         return true;

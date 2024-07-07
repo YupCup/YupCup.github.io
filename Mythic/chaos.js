@@ -1,11 +1,11 @@
 let chaosText = document.getElementById("dangerText");
-let chaosLevel = 5.0;
-let lerpedChaosLevel = chaosLevel;
+let chaosFactor = 5.0;
+let lerpedChaosLevel = chaosFactor;
 
 let root = document.querySelector(':root');
 setInterval(smoothProgressLerp, 10);
 
-setDanger(chaosLevel);
+setDanger(chaosFactor);
 
 function setDanger(chaos) {
     try {
@@ -14,24 +14,24 @@ function setDanger(chaos) {
         else if (chaos > 9)
             chaos = 9;
         
-        chaosLevel = chaos;
-        chaosText.innerHTML = chaosLevel;
+        chaosFactor = chaos;
+        chaosText.innerHTML = chaosFactor;
 
-        root.style.setProperty('--progress', chaosLevel * 10);
+        root.style.setProperty('--progress', chaosFactor * 10);
     } catch {
 
     }
 }
 
 function smoothProgressLerp() {
-    if (Math.abs(chaosLevel - lerpedChaosLevel) < 0.001) {
-        lerpedChaosLevel = chaosLevel;
+    if (Math.abs(chaosFactor - lerpedChaosLevel) < 0.001) {
+        lerpedChaosLevel = chaosFactor;
         return;
     }
 
-    lerpedChaosLevel += (chaosLevel - lerpedChaosLevel) / 30;
+    lerpedChaosLevel += (chaosFactor - lerpedChaosLevel) / 30;
     root.style.setProperty('--progress-smooth', lerpedChaosLevel * 10);
 }
 
-document.getElementById("dangerDecrease").addEventListener("click", () => setDanger(chaosLevel - 1));
-document.getElementById("dangerIncrease").addEventListener("click", () => setDanger(chaosLevel + 1));
+document.getElementById("dangerDecrease").addEventListener("click", () => setDanger(chaosFactor - 1));
+document.getElementById("dangerIncrease").addEventListener("click", () => setDanger(chaosFactor + 1));

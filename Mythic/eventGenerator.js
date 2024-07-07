@@ -22,7 +22,7 @@ function createRandomEventInfo(icon, list) {
 
 function randomizeEventInfo(icon, list, eventInfo) {
     eventInfo.children[0].innerHTML = icon;
-    eventInfo.children[1].innerHTML = getRandomEventAdjectives(list);
+    eventInfo.children[1].innerHTML = getRandomFromLists(list);
 }
 
 function rerollEvent(icon, list, eventInfo) {
@@ -43,8 +43,23 @@ function clearEventInfo() {
     eventGeneratorBox.innerHTML = "";
     eventGeneratorBox.style.display = "none";
 }
-document.getElementById("event-button").addEventListener("click", generateEvent);
+document.getElementById("scene-button").addEventListener("click", generateScene);
 
+function generateScene() {
+    clearAll();
+
+    setResultText(getSceneState(), "movie", "Scene");
+}
+
+function getSceneState() {
+    let d10 = getDice(10);
+    if (d10 > chaosFactor)
+        return "Expected Scene";
+
+    return d10 % 2 == 1 ? "Altered Scene" : "Interupt Scene";
+}
+
+document.getElementById("event-button").addEventListener("click", generateEvent);
 function generateEvent() {
     clearAll();
 
@@ -59,7 +74,6 @@ function generateEvent() {
 }
 
 document.getElementById("character-button").addEventListener("click", generateCharacter);
-
 function generateCharacter() {
     clearAll();
     setResultText(generateName() + " " + generateName(), "comedy_mask", "Character", true);
@@ -74,9 +88,9 @@ function generateCharacter() {
 }
 
 function generateName() {
-    let name = getRandomEventAdjectives([names]);
+    let name = getRandomFromLists([names]);
     for (let i = 0; i < Math.random() * 2; i++) {
-        name += getRandomEventAdjectives([names]).toLowerCase();
+        name += getRandomFromLists([names]).toLowerCase();
     }
     return name;
 }
@@ -107,7 +121,28 @@ function generateTerrain() {
     createRandomEventInfo("hearing", [sounds]);
 }
 
-function getRandomEventAdjectives(lists) {
+document.getElementById("object-button").addEventListener("click", generateObject);
+function generateObject() {
+    clearAll();
+    setResultText(getRandomFromLists([objects]), "iron", "Object", true);
+    setNameReroll(() => setResultText(generateName(), "forest", "Environment"));
+
+    createRandomEventInfo("destruction", [damage]);
+    let diceResult = getDice(10);
+    if (diceResult >= 8) {
+        createRandomEventInfo("star", [enchantments]);
+        setEventsPerLine(2);
+        return;
+    }
+    else if (diceResult <= 2) {
+        createRandomEventInfo("heart_broken", [damages]);
+        setEventsPerLine(2);
+        return;
+    }
+    setEventsPerLine(1);
+}
+
+function getRandomFromLists(lists) {
     let adjectives = "";
     for (let i = 0; i < lists.length; i++) {
         adjectives += pickRandomFromList(lists[i]);

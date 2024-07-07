@@ -48,7 +48,6 @@ function clearAll() {
     var newCard = card.cloneNode(true);
     cardHolder.appendChild(newCard); */
 
-    console.log("uh");
     eventGeneratorBox.style.gridTemplateColumns = initialEventStyle;
     clearEventInfo();
 
