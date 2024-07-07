@@ -43,15 +43,8 @@ let eventBox = document.getElementById("eventBox");
 function checkRandomEvent(diceResult) {
     let diceString = diceResult.toString();
     if (diceString[0] == diceString[1] && parseInt(diceString[0]) <= chaosLevel) {
-        eventBox.style.display = "inline";
-
+        generateEvent();
         setResultText(getRandomEventFocus(), "Random Event", true);
-        eventActionText.innerHTML = getRandomEventAdjectives([eventActions1, eventActions2]);
-        eventDescriptionText.innerHTML = getRandomEventAdjectives([eventDescriptor1, eventDescriptor2]);
-
-        createEventInfo("forest", getRandomEventAdjectives([eventLocations]));
-        createEventInfo("person", getRandomEventAdjectives([eventCharacters]));
-        createEventInfo("package_2", getRandomEventAdjectives([eventObjects]));
         return true;
     }
     eventBox.style.display = "none";

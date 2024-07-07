@@ -16,6 +16,20 @@ function clearEventInfo() {
     eventGeneratorBox.innerHTML = "";
     eventGeneratorBox.style.display = "none";
 }
+document.getElementById("event-button").addEventListener("click", generateEvent);
+
+function generateEvent() {
+    clearAll();
+    eventBox.style.display = "inline";
+
+    setResultText(getRandomEventFocus(), "Event", true);
+    eventActionText.innerHTML = getRandomEventAdjectives([eventActions1, eventActions2]);
+    eventDescriptionText.innerHTML = getRandomEventAdjectives([eventDescriptor1, eventDescriptor2]);
+
+    createEventInfo("forest", getRandomEventAdjectives([eventLocations]));
+    createEventInfo("person", getRandomEventAdjectives([eventCharacters]));
+    createEventInfo("package_2", getRandomEventAdjectives([eventObjects]));
+}
 
 document.getElementById("character-button").addEventListener("click", generateCharacter);
 
@@ -55,7 +69,7 @@ function generateBeast() {
 document.getElementById("environment-button").addEventListener("click", generateTerrain);
 function generateTerrain() {
     clearAll();
-    setResultText("Environment", "", true);
+    setResultText(generateName(), "Environment", true);
 
     createEventInfo("forest", getRandomEventAdjectives([terrainDescriptors]));
     createEventInfo("oxygen_saturation", getRandomEventAdjectives([smells]));
