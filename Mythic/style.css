@@ -11,6 +11,7 @@
     --bg-color: rgb(129, 129, 220);
     background-color: var(--bg-color);
     background: linear-gradient(to bottom left, #8f94fb, #676eea);  
+    color: #211e32;
 }
 
 .centerDiv {
@@ -53,6 +54,7 @@
 .material-symbols-outlined {
     font-size: larger;
     text-align: center;
+    color: #211e32;
 }
 
 #dangerDiceDiv {
