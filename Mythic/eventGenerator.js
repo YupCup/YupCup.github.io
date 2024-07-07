@@ -63,7 +63,7 @@ document.getElementById("character-button").addEventListener("click", generateCh
 function generateCharacter() {
     clearAll();
     setResultText(generateName() + " " + generateName(), "comedy_mask", "Character", true);
-    setNameReroll(() => setResultText(generateName() + " " + generateName(), "Character"));
+    setNameReroll(() => setResultText(generateName() + " " + generateName(), "comedy_mask", "Character"));
 
     createRandomEventInfo("face_3", [characterAppearances]);
     createRandomEventInfo("accessibility_new", [characterDescriptors]);
@@ -85,7 +85,7 @@ document.getElementById("creature-button").addEventListener("click", generateBea
 function generateBeast() {
     clearAll();
     setResultText(generateName(), "raven", "Creature", true);
-    setNameReroll(() => setResultText(generateName(), "Creature"));
+    setNameReroll(() => setResultText(generateName(), "raven", "Creature"));
 
     createRandomEventInfo("visibility", [creatureDescriptions]);
     createRandomEventInfo("aspect_ratio", [sizes]);
@@ -100,7 +100,7 @@ document.getElementById("environment-button").addEventListener("click", generate
 function generateTerrain() {
     clearAll();
     setResultText(generateName(), "forest", "Environment", true);
-    setNameReroll(() => setResultText(generateName(), "Environment"));
+    setNameReroll(() => setResultText(generateName(), "forest", "Environment"));
 
     createRandomEventInfo("visibility", [terrainDescriptors]);
     createRandomEventInfo("oxygen_saturation", [smells]);
