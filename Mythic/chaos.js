@@ -2,8 +2,6 @@ let chaosText = document.getElementById("dangerText");
 let chaosLevel = 5.0;
 let lerpedChaosLevel = chaosLevel;
 
-let odds = 5;
-
 let root = document.querySelector(':root');
 setInterval(smoothProgressLerp, 10);
 
