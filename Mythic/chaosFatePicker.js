@@ -1,13 +1,22 @@
 function getChaosIndex(odds) {
     return chaosLevel + odds - 2;
 }
-
+/* 
 let fateYes = 
 [0, 0, 0, 1, 2, 3, 5, 7, 10, 13, 15, 17, 18, 19, 20, 20, 20];
 let fateBase = 
 [1, 1, 1, 5, 10, 15, 25, 36, 50, 65, 75, 85, 90, 95, 99, 99, 99];
 let fateNo =
-[81, 81, 81, 82, 83, 84, 86, 88, 91, 94, 96, 98, 99, 100, 101, 101, 101];
+[81, 81, 81, 82, 83, 84, 86, 88, 91, 94, 96, 98, 99, 100, 101, 101, 101]; */
+
+
+let fateYes = 
+[0, 1, 2, 3, 5, 7, 10, 13, 15, 17, 18, 19, 20];
+let fateBase = 
+[1, 5, 10, 15, 25, 35, 50, 65, 75, 85, 90, 95, 99];
+let fateNo =
+[81, 82, 83, 84, 86, 88, 91, 94, 96, 98, 99, 100, 101];
+
 
 let oddsBar = document.getElementById("oddsBar");
 for (let i = 0; i < oddsBar.children.length; i++) {
