@@ -53,7 +53,7 @@ function hoverElement(change) {
 
 function dangerFate(odds) {
     clearAll();
-    toggleOddsBar();
+    oddsBar.style.visibility = "hidden";
 
     let diceResult = getDice(100);
     if (checkRandomEvent(diceResult)) {
