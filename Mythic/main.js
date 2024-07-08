@@ -36,7 +36,7 @@ function setNameReroll(func, Category) {
 }
 
 let initialEventStyle = eventGeneratorBox.style.gridTemplateColumns;
-let card = document.getElementById("card");
+let card = document.getElementById("resultDiv");
 let cardHolder = document.getElementById("cardHolder");
 let timesCleared = 0;
 
@@ -44,9 +44,10 @@ function clearAll() {
     timesCleared ++;
     if (timesCleared == 1)
         return;
-/* 
+
     var newCard = card.cloneNode(true);
-    cardHolder.appendChild(newCard); */
+    card.after(newCard);
+    UpdateCardIndexes(cardHolder);
 
     eventGeneratorBox.style.gridTemplateColumns = initialEventStyle;
     clearEventInfo();

@@ -23,7 +23,7 @@ for (let i = 0; i < oddsBar.children.length; i++) {
     child.addEventListener("click", () => chaosFate(i+1));
 }
 
-let oddsTitles = ["Nearly Impossible", "Very Unlikely", "Unlikely", "50/50", "Likely", "Very Likely", "Almost Certain"]
+let oddsTitles = ["Impossible", "Nearly Impossible", "Very Unlikely", "Unlikely", "50/50", "Likely", "Very Likely", "Almost Certain", "Certain"]
 
 function chaosFate(odds) {
     clearAll();

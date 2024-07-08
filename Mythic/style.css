@@ -1,3 +1,5 @@
+html, body {margin: 0; height: 100%; overflow: hidden}
+
 :root {
     font-family: "M PLUS Rounded 1c", sans-serif;
     font-weight: 500;
@@ -22,15 +24,6 @@
     min-height: 100svh;
 
     text-align: center;
-}
-
-#cardHolder {
-    /* display: grid;
-    grid-auto-flow: column dense;
-    grid-auto-columns: minmax(10px, auto);
-
-    width: 30vw;
-    left: 100%; */
 }
 
 #cardHolder div {
@@ -79,7 +72,7 @@
 #eventGeneratorBox {
     justify-content: center;
     grid-template-columns: repeat(6, 1fr);
-    width: fit-content;
+    width: max-content;
     justify-self: center;
     gap: 5px;
 }

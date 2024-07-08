@@ -46,11 +46,14 @@
     background-color: rgba(215, 241, 250, 0.28);
     outline: rgba(230, 253, 255, 0.298) solid 2px;
     border-radius: 10px;
+
+    z-index: 100;
 }
 .hoverBar:hover {
     background-color: rgba(215, 241, 250, 0.57);
     outline: rgba(230, 253, 255, 0.56) solid 2px;
 }
+
 #oddsBar {
     width: fit-content;
     height: fit-content;
@@ -62,6 +65,14 @@
     min-width: 100px;
     height: 100px;
     font-size: 1.5em;
+}
+
+#oddsBar .material-symbols-outlined:nth-child(n+6){
+    margin-left: -20px;
+}
+
+#oddsBar .material-symbols-outlined:nth-child(n):nth-child(-n+4){
+    margin-right: -20px;
 }
 
 #diceBar {

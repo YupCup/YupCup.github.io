@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
         <link rel="stylesheet" type="text/css" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="scrollCard.css" />
         <link rel="stylesheet" type="text/css" href="bottomBar.css" />
         <link rel="stylesheet" type="text/css" href="chaosStyle.css" />
     </head>
@@ -32,9 +33,9 @@
                 </div>
                 <button id="dangerIncrease" class="material-symbols-outlined">add</button>
             </div>
-            <div id="cardHolder">
-                <div id="card" class="center">
-                    <div id="resultDiv">
+            <div class="centerHorizontal">
+                <div id="cardHolder" class="scrollCardHolder">
+                    <div id="resultDiv" class="scrollCard">
                         <div id="eventTitleParent" class="centerHorizontal">
                             <span id="eventIcon" class="material-symbols-outlined">forest</span>
                             <h3 id="eventTitleText"></h3>
@@ -78,13 +79,15 @@
                     <div class="hoverHolder">
                         <button class="hoverButton material-symbols-outlined" id="fate-button">theater_comedy</button>
                         <div class="hoverBar" id="oddsBar">
-                            <button class="material-symbols-outlined" id="odds-1">sentiment_very_dissatisfied</button>
-                            <button class="material-symbols-outlined" id="odds-2">sentiment_sad</button>
-                            <button class="material-symbols-outlined" id="odds-3">sentiment_dissatisfied</button>
-                            <button class="material-symbols-outlined" id="odds-4">sentiment_neutral</button>
-                            <button class="material-symbols-outlined" id="odds-5">sentiment_satisfied</button>
-                            <button class="material-symbols-outlined" id="odds-6">sentiment_very_satisfied</button>
-                            <button class="material-symbols-outlined" id="odds-7">sentiment_excited</button>
+                            <button class="material-symbols-outlined" id="odds-1">skull</button>
+                            <button class="material-symbols-outlined" id="odds-2">sentiment_very_dissatisfied</button>
+                            <button class="material-symbols-outlined" id="odds-3">mood_bad</button>
+                            <button class="material-symbols-outlined" id="odds-4">sentiment_dissatisfied</button>
+                            <button class="material-symbols-outlined" id="odds-5">sentiment_neutral</button>
+                            <button class="material-symbols-outlined" id="odds-6">sentiment_satisfied</button>
+                            <button class="material-symbols-outlined" id="odds-7">mood</button>
+                            <button class="material-symbols-outlined" id="odds-8">sentiment_very_satisfied</button>
+                            <button class="material-symbols-outlined" id="odds-9">sentiment_excited</button>
                         </div>
                     </div>
                     <button class="material-symbols-outlined" id="character-button">comedy_mask</button>
@@ -95,11 +98,12 @@
             </div>
         </div>
         
-        <script src="main.js"> </script>
-        <script src="chaos.js"> </script>
-        <script src="lists.js"> </script>
-        <script src="eventGenerator.js"> </script>
-        <script src="chaosFatePicker.js"> </script>
+        <script src="scrollCard.js"></script>
+        <script src="main.js"></script>
+        <script src="chaos.js"></script>
+        <script src="lists.js"></script>
+        <script src="eventGenerator.js"></script>
+        <script src="chaosFatePicker.js"></script>
         <script src="init.js"></script>
 
 </body>
