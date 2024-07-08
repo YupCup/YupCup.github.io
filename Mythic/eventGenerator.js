@@ -124,8 +124,8 @@ function generateTerrain() {
 document.getElementById("object-button").addEventListener("click", generateObject);
 function generateObject() {
     clearAll();
-    setResultText(getRandomFromLists([objects]), "iron", "Object", true);
-    setNameReroll(() => setResultText(getRandomFromLists([objects]), "iron", "Object"));
+    setResultText(getRandomFromLists([personObjects]), "iron", "Object", true);
+    setNameReroll(() => setResultText(getRandomFromLists([personObjects]), "iron", "Object"));
 
     createRandomEventInfo("destruction", [damage]);
     let diceResult = getDice(10);
