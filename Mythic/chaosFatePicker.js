@@ -1,31 +1,31 @@
 function getChaosIndex(odds) {
-    return chaosFactor + odds - 2;
+    return chaosFactor + odds - 1;
 }
-/* 
+
 let fateYes = 
-[0, 0, 0, 1, 2, 3, 5, 7, 10, 13, 15, 17, 18, 19, 20, 20, 20];
+[0,  0,  0,  1,  2,  3,  5,  7,  10, 13, 15, 17, 18, 19,  20,  20,  20];
 let fateBase = 
-[1, 1, 1, 5, 10, 15, 25, 36, 50, 65, 75, 85, 90, 95, 99, 99, 99];
+[1,  1,  1,  5,  10, 15, 25, 35, 50, 65, 75, 85, 90, 95,  99, 99,  99];
 let fateNo =
-[81, 81, 81, 82, 83, 84, 86, 88, 91, 94, 96, 98, 99, 100, 101, 101, 101]; */
+[81, 81, 81, 82, 83, 84, 86, 88, 91, 94, 96, 98, 99, 100, 101, 101, 101];
 
 
-let fateYes = 
+/* let fateYes = 
 [0, 1, 2, 3, 5, 7, 10, 13, 15, 17, 18, 19, 20];
 let fateBase = 
 [1, 5, 10, 15, 25, 35, 50, 65, 75, 85, 90, 95, 99];
 let fateNo =
-[81, 82, 83, 84, 86, 88, 91, 94, 96, 98, 99, 100, 101];
+[81, 82, 83, 84, 86, 88, 91, 94, 96, 98, 99, 100, 101]; */
 
 
 for (let i = 0; i < oddsBar.children.length; i++) {
     const child = oddsBar.children[i];
-    child.addEventListener("click", () => dangerFate(i+1));
+    child.addEventListener("click", () => chaosFate(i+1));
 }
 
-let oddsTitles = ["Impossible", "Unlikely", "50/50", "Likely", "Certain"]
+let oddsTitles = ["Nearly Impossible", "Very Unlikely", "Unlikely", "50/50", "Likely", "Very Likely", "Almost Certain"]
 
-function dangerFate(odds) {
+function chaosFate(odds) {
     clearAll();
 
     let diceResult = getDice(100);
@@ -37,6 +37,9 @@ function dangerFate(odds) {
     let icon = "theater_comedy";
     let oddsText = oddsTitles[odds - 1];
 
+/*     console.log("Testing chaos fate with odds " + odds);
+    console.log(fateYes[fateIndex] + "; " + fateBase[fateIndex] + "; " + fateNo[fateIndex]);
+ */
     if (diceResult < fateYes[fateIndex]) {
         setResultText("Definite YES!", icon, oddsText);
         return;
