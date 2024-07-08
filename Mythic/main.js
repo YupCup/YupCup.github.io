@@ -48,6 +48,14 @@ function clearAll() {
     var newCard = card.cloneNode(true);
     card.after(newCard);
     UpdateCardIndexes(cardHolder);
+    let closeButton = newCard.getElementsByClassName("closeButton")[0];
+    closeButton.classList.remove("sample");
+    closeButton.addEventListener("click", ()=>
+        {
+            closeButton.parentNode.remove();
+            UpdateCardIndexes(cardHolder);
+        }
+    )
 
     eventGeneratorBox.style.gridTemplateColumns = initialEventStyle;
     clearEventInfo();

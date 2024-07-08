@@ -32,7 +32,7 @@ function touchMove(event) {
 }
 
 function changeActiveCardMouse(eventInfo, cardHolder) {
-    changeActiveCard(cardHolder, parseInt(touchMove(eventInfo).x) * -5);
+    changeActiveCard(cardHolder, parseInt(touchMove(eventInfo).x) * -3);
     touchStart(eventInfo);
 }
 
