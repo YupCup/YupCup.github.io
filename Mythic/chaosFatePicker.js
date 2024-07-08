@@ -18,51 +18,15 @@ let fateNo =
 [81, 82, 83, 84, 86, 88, 91, 94, 96, 98, 99, 100, 101];
 
 
-let oddsBar = document.getElementById("oddsBar");
 for (let i = 0; i < oddsBar.children.length; i++) {
     const child = oddsBar.children[i];
     child.addEventListener("click", () => dangerFate(i+1));
-}
-
-document.getElementById("fate-button").addEventListener("click", toggleOddsBar);
-function toggleOddsBar() {
-    if (hoverAmount > 0)
-        return;
-
-    oddsBar.style.visibility = oddsBar.style.visibility == "hidden" ? "visible" : "hidden";
-}
-
-document.getElementById("fate-button").addEventListener("mouseenter", ()=>hoverElement(1));
-document.getElementById("fate-button").addEventListener("mouseleave", ()=>hoverElement(-1));
-oddsBar.addEventListener("mouseenter", ()=>hoverOddsbarIfActive(1));
-oddsBar.addEventListener("mouseleave", ()=>hoverOddsbarIfActive(-1));
-
-function hoverOddsbarIfActive(change) {
-    if (oddsBar.style.visibility == "hidden")
-        return;
-
-    hoverElement(change);
-}
-
-let hoverAmount = 0;
-let hideID = "a";
-function hoverElement(change) {
-    hoverAmount += change
-    if (hoverAmount == 0)
-        hideID = setTimeout(() => oddsBar.style.visibility = "hidden", 50);
-    else {
-        if (typeof hideID === "number") {
-            clearTimeout(hideID);
-        }
-        oddsBar.style.visibility = "visible";
-    }
 }
 
 let oddsTitles = ["Impossible", "Unlikely", "50/50", "Likely", "Certain"]
 
 function dangerFate(odds) {
     clearAll();
-    oddsBar.style.visibility = "hidden";
 
     let diceResult = getDice(100);
     if (checkRandomEvent(diceResult)) {

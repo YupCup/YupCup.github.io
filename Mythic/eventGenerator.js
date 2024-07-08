@@ -142,6 +142,20 @@ function generateObject() {
     setEventsPerLine(1);
 }
 
+document.getElementById("dice-button-4").addEventListener("click", () => throwDice(4));
+document.getElementById("dice-button-6").addEventListener("click", () => throwDice(6));
+document.getElementById("dice-button-8").addEventListener("click", () => throwDice(8));
+document.getElementById("dice-button-10").addEventListener("click", () => throwDice(10));
+document.getElementById("dice-button-12").addEventListener("click", () => throwDice(12));
+document.getElementById("dice-button-20").addEventListener("click", () => throwDice(20));
+document.getElementById("dice-button-100").addEventListener("click", () => throwDice(100));
+
+function throwDice(dice) {
+    clearAll();
+    setResultText(getDice(dice), "", "d" + dice, true);
+    setNameReroll(() => setResultText(getDice(dice), "", "d" + dice, true));
+}
+
 function getRandomFromLists(lists) {
     let adjectives = "";
     for (let i = 0; i < lists.length; i++) {

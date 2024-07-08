@@ -54,23 +54,25 @@
 
 .centerHorizontal {
     display: grid;
-    grid-template-columns: auto auto;
     align-items: center;
     justify-content: center;
+}
+
+#eventTitleParent {
+    color: rgb(65, 65, 151);
+    grid-template-columns: auto auto;
     
     gap: 15px;
 
     padding-bottom: 35px;
-
-    color: rgb(65, 65, 151);
 }
 
-.centerHorizontal h3 {
+#eventTitleParent h3 {
     margin: 0px;
     font-size: 1em;
 }
 
-.centerHorizontal .material-symbols-outlined {
+#eventTitleParent .material-symbols-outlined {
     color: rgb(65, 65, 151);
 }
 
@@ -105,7 +107,7 @@ button:hover {
     border: 0px;
     transition-duration: .1s;
 }
-button:active {
+button:active:not(.hoverButton) {
     background: rgba(36, 36, 36, 0.409);
     border: 0px;
 }
@@ -147,13 +149,10 @@ button:active {
     font-weight: 200;
 }
 
-#fate-button {
-    font-size: 2em !important;
-}
-
 ::selection {
     background-color: hsl(calc(129 + var(--progress) * 1), 40%, 80%);;
 }
+
 
 #backgroundDiv {
     position: relative;

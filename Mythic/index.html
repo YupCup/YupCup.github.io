@@ -35,7 +35,7 @@
             <div id="cardHolder">
                 <div id="card" class="center">
                     <div id="resultDiv">
-                        <div class="centerHorizontal">
+                        <div id="eventTitleParent" class="centerHorizontal">
                             <span id="eventIcon" class="material-symbols-outlined">forest</span>
                             <h3 id="eventTitleText"></h3>
                         </div>
@@ -53,21 +53,40 @@
                 </div>
             </div>
             <div id="buttonBar">
-                <div id="oddsBar">
-                    <button class="material-symbols-outlined" id="odds-1">sentiment_very_dissatisfied</button>
-                    <button class="material-symbols-outlined" id="odds-2">sentiment_dissatisfied</button>
-                    <button class="material-symbols-outlined" id="odds-3">sentiment_neutral</button>
-                    <button class="material-symbols-outlined" id="odds-4">sentiment_satisfied</button>
-                    <button class="material-symbols-outlined" id="odds-5">sentiment_excited</button>
-                </div>
-    
                 <div id="actionButtonRow">
+                    <button class="material-symbols-outlined" id="settings-button">settings</button>
+                    <div class="hoverHolder">
+                        <button class="hoverButton material-symbols-outlined" id="dice-button">
+                            casino
+                        </button>
+                        <div id="diceBar" class="hoverBar">
+                            <button id="dice-button-4"><svg xml:space="preserve" stroke-width="1" viewBox="8.803716381418093 8.798399999999999 83.39075794621027 81.38520000000001" y="0px" x="0px" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><path class="diceSVGpath" d="M52.92,10.81c-0.57-0.74-1.45-1.17-2.38-1.17s-1.81,0.43-2.38,1.17L10.38,59.77c-0.52,0.67-0.73,1.53-0.58,2.37   c0.15,0.83,0.65,1.57,1.37,2.01l37.79,23.52c0.49,0.3,1.04,0.45,1.59,0.45s1.1-0.15,1.59-0.45l37.79-23.52   c0.72-0.45,1.22-1.18,1.37-2.01c0.15-0.83-0.06-1.69-0.58-2.37L52.92,10.81z M47.55,21.44v58.29L17.16,60.81L47.55,21.44z    M53.55,79.72V21.44l30.39,39.37L53.55,79.72z"/></g></svg></button>
+                            <button id="dice-button-6"><svg xml:space="preserve" viewBox="8.803716381418093 8.798399999999999 83.39075794621027 81.38520000000001" y="0px" x="0px" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><path class="diceSVGpath" d="M83.68,27.08L51.72,13.55c-0.75-0.32-1.59-0.32-2.34,0L17.42,27.08c-1.1,0.47-1.82,1.55-1.83,2.74c0,0.01,0,0.01,0,0.02   l0,0v37.61c0,1.19,0.71,2.27,1.8,2.75l31.96,14c0.38,0.17,0.79,0.25,1.2,0.25s0.82-0.08,1.2-0.25l31.96-14   c1.09-0.48,1.8-1.56,1.8-2.75V29.84l0,0c0-0.01,0-0.01,0-0.02C85.5,28.63,84.79,27.55,83.68,27.08z M50.55,19.57l24.38,10.32   L50.55,40.57L26.17,29.89L50.55,19.57z M21.58,34.43L47.55,45.8v31.06L21.58,65.49V34.43z M53.55,76.86V45.8l25.96-11.37v31.06   L53.55,76.86z"/></g></svg></button>
+                            <button id="dice-button-8"><svg xml:space="preserve" viewBox="8.803716381418093 8.798399999999999 83.39075794621027 81.38520000000001" y="0px" x="0px" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" ><g><path class="diceSVGpath" d="M80.8,30.5L52.75,13.55c-0.92-0.55-2.06-0.58-3-0.06L21.05,29.3c-0.94,0.52-1.53,1.5-1.55,2.57l-0.65,32.77   c-0.02,1.07,0.53,2.07,1.45,2.63l28.05,16.95c0.48,0.29,1.01,0.43,1.55,0.43c0.5,0,1-0.12,1.45-0.37l28.7-15.82   c0.94-0.52,1.53-1.5,1.55-2.57l0.65-32.77C82.27,32.05,81.72,31.05,80.8,30.5z M75.83,54.3L58.67,24.13l17.54,10.6L75.83,54.3z    M73.42,62.21l-45.21-0.45l22.57-39.37L73.42,62.21z M42.87,24.13l-17.83,31.1l0.43-21.51L42.87,24.13z M49.96,78.18L32.79,67.81   l35.36,0.35L49.96,78.18z"/></g></svg></button>
+                            <button id="dice-button-10"><svg xml:space="preserve" viewBox="8.803716381418093 8.798399999999999 83.39075794621027 81.38520000000001" y="0px" x="0px" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><path class="diceSVGpath" d="M52.36,10.33c-1.11-0.92-2.73-0.92-3.84,0L11.98,40.82c-0.68,0.57-1.08,1.41-1.08,2.3v10.95c0,0.88,0.39,1.72,1.06,2.29   L48.5,87.41c0.56,0.48,1.25,0.71,1.94,0.71s1.38-0.24,1.94-0.71l36.75-31.05c0.67-0.57,1.06-1.41,1.06-2.29V43.13   c0-0.89-0.4-1.74-1.08-2.31L52.36,10.33z M84.19,50.27l-15.45-3.93L58.42,23.15L84.2,44.54L84.19,50.27L84.19,50.27z M50.45,53.79   L38.19,47.5L50.45,20l12.26,27.5L50.45,53.79z M33.94,52.07L47.45,59v19.64L20.27,55.55L33.94,52.07z M53.45,59l13.51-6.93   l13.8,3.52L53.45,78.66V59z M42.45,23.22l-10.3,23.11L16.9,50.22v-5.68L42.45,23.22z"/></g></svg></button>
+                            <button id="dice-button-12"><svg xml:space="preserve" viewBox="8.803716381418093 8.798399999999999 83.39075794621027 81.38520000000001" y="0px" x="0px" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><path class="diceSVGpath" d="M85.5,36.55l-12.42-17.1c-0.37-0.51-0.9-0.89-1.5-1.09l-20.1-6.53c-0.6-0.2-1.25-0.2-1.85,0l-20.1,6.53   c-0.6,0.2-1.13,0.58-1.5,1.09L15.6,36.55c-0.37,0.51-0.57,1.13-0.57,1.76v21.13c0,0.63,0.2,1.25,0.57,1.76l12.42,17.1   c0.37,0.51,0.9,0.89,1.5,1.09l20.1,6.53c0.3,0.1,0.61,0.15,0.93,0.15s0.63-0.05,0.93-0.15l20.1-6.53c0.6-0.2,1.13-0.58,1.5-1.09   L85.5,61.2c0.37-0.51,0.57-1.13,0.57-1.76V38.31C86.07,37.68,85.87,37.06,85.5,36.55z M78.44,37.04l-9.34,4.01l-15.55-11.3V18.82   l15.24,4.95L78.44,37.04z M59.6,62.84H41.5l-5.59-17.21l14.64-10.64l14.64,10.64L59.6,62.84z M32.3,23.77l15.24-4.95v10.94   L32,41.05l-9.34-4.01L32.3,23.77z M21.03,58.47v-15.6l8.92,3.83l6.01,18.49l-5.35,6.46L21.03,58.47z M50.55,79.92l-14.97-4.86   l5.15-6.22h19.63l5.15,6.22L50.55,79.92z M70.49,71.65l-5.35-6.46l6.01-18.49l8.92-3.83v15.6L70.49,71.65z"/></g></svg></button>
+                            <button id="dice-button-20"><svg xml:space="preserve" viewBox="8.803716381418093 8.798399999999999 83.39075794621027 81.38520000000001" y="0px" x="0px" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><path class="diceSVGpath" d="M82.19,31.23c-0.02-0.15-0.03-0.3-0.07-0.44c-0.04-0.13-0.1-0.24-0.15-0.37c-0.04-0.11-0.07-0.22-0.13-0.32   c-0.01-0.01-0.02-0.02-0.02-0.03c-0.07-0.11-0.16-0.21-0.24-0.32c-0.08-0.1-0.15-0.21-0.24-0.3c-0.08-0.08-0.18-0.14-0.27-0.21   c-0.11-0.09-0.22-0.19-0.35-0.26c-0.02-0.01-0.03-0.02-0.04-0.03l-29.32-16.2c-0.94-0.52-2.08-0.5-3,0.06l-28.68,17.3   c-0.02,0.01-0.03,0.03-0.05,0.04c-0.12,0.07-0.22,0.17-0.33,0.26c-0.09,0.08-0.19,0.15-0.28,0.24c-0.08,0.09-0.15,0.2-0.22,0.29   c-0.08,0.11-0.17,0.22-0.23,0.34c-0.01,0.02-0.02,0.03-0.03,0.04c-0.05,0.1-0.07,0.2-0.1,0.3c-0.05,0.13-0.11,0.25-0.14,0.39   c-0.03,0.14-0.04,0.28-0.05,0.42c-0.01,0.1-0.04,0.2-0.04,0.31l0.63,33.49c0.02,1.07,0.61,2.05,1.55,2.57L49.73,85   c0.45,0.25,0.95,0.37,1.45,0.37c0.54,0,1.07-0.14,1.55-0.43l28.69-17.29c0.92-0.55,1.47-1.55,1.45-2.63l-0.63-33.49   C82.24,31.43,82.2,31.33,82.19,31.23z M60.26,58.89l-8.88,15.82l-9.47-15.48L60.26,58.89z M41.33,52.69l8.88-15.82l9.47,15.48   L41.33,52.69z M35.97,49.98l-9.44-14.61l18.26-1.11L35.97,49.98z M65.28,50.01l-9.76-15.95l18.62,0.42L65.28,50.01z M53.06,28   l-0.09-7.49l14.13,7.81L53.06,28z M47.06,28.11l-13.83,0.84l13.75-8.29L47.06,28.11z M32.09,55.03l-7.34,5.34l-0.33-17.2   L32.09,55.03z M35.38,60.05l9.39,15.35l-17.34-9.58L35.38,60.05z M66.49,60.04L74.2,65l-15.85,9.55L66.49,60.04z M69.45,54.8   l6.99-12.26l0.32,16.97L69.45,54.8z"/></g></svg></button>
+                            <button id="dice-button-100" style="position: relative;">
+                                <svg xml:space="preserve" style="position: absolute; left: 15%; top: 10%" viewBox="8.803716381418093 8.798399999999999 83.39075794621027 81.38520000000001" y="0px" x="0px" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><path class="diceSVGpath" d="M52.36,10.33c-1.11-0.92-2.73-0.92-3.84,0L11.98,40.82c-0.68,0.57-1.08,1.41-1.08,2.3v10.95c0,0.88,0.39,1.72,1.06,2.29   L48.5,87.41c0.56,0.48,1.25,0.71,1.94,0.71s1.38-0.24,1.94-0.71l36.75-31.05c0.67-0.57,1.06-1.41,1.06-2.29V43.13   c0-0.89-0.4-1.74-1.08-2.31L52.36,10.33z M84.19,50.27l-15.45-3.93L58.42,23.15L84.2,44.54L84.19,50.27L84.19,50.27z M50.45,53.79   L38.19,47.5L50.45,20l12.26,27.5L50.45,53.79z M33.94,52.07L47.45,59v19.64L20.27,55.55L33.94,52.07z M53.45,59l13.51-6.93   l13.8,3.52L53.45,78.66V59z M42.45,23.22l-10.3,23.11L16.9,50.22v-5.68L42.45,23.22z"/></g></svg>
+                                <svg xml:space="preserve" style="position: absolute; right: 0%; top: 10%" viewBox="8.803716381418093 8.798399999999999 83.39075794621027 81.38520000000001" y="0px" x="0px" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><path class="diceSVGpath" d="M52.36,10.33c-1.11-0.92-2.73-0.92-3.84,0L11.98,40.82c-0.68,0.57-1.08,1.41-1.08,2.3v10.95c0,0.88,0.39,1.72,1.06,2.29   L48.5,87.41c0.56,0.48,1.25,0.71,1.94,0.71s1.38-0.24,1.94-0.71l36.75-31.05c0.67-0.57,1.06-1.41,1.06-2.29V43.13   c0-0.89-0.4-1.74-1.08-2.31L52.36,10.33z M84.19,50.27l-15.45-3.93L58.42,23.15L84.2,44.54L84.19,50.27L84.19,50.27z M50.45,53.79   L38.19,47.5L50.45,20l12.26,27.5L50.45,53.79z M33.94,52.07L47.45,59v19.64L20.27,55.55L33.94,52.07z M53.45,59l13.51-6.93   l13.8,3.52L53.45,78.66V59z M42.45,23.22l-10.3,23.11L16.9,50.22v-5.68L42.45,23.22z"/></g></svg>
+                            </button>                            
+                        </div>
+                    </div>
                     <button class="material-symbols-outlined" id="scene-button">movie</button>
                     <button class="material-symbols-outlined" id="event-button">map</button>
-                    <button class="material-symbols-outlined" id="environment-button">forest</button>
-                    <button class="material-symbols-outlined" id="fate-button">theater_comedy</button>
+                    <div class="hoverHolder">
+                        <button class="hoverButton material-symbols-outlined" id="fate-button">theater_comedy</button>
+                        <div class="hoverBar" id="oddsBar">
+                            <button class="material-symbols-outlined" id="odds-1">sentiment_very_dissatisfied</button>
+                            <button class="material-symbols-outlined" id="odds-2">sentiment_dissatisfied</button>
+                            <button class="material-symbols-outlined" id="odds-3">sentiment_neutral</button>
+                            <button class="material-symbols-outlined" id="odds-4">sentiment_satisfied</button>
+                            <button class="material-symbols-outlined" id="odds-5">sentiment_excited</button>
+                        </div>
+                    </div>
                     <button class="material-symbols-outlined" id="character-button">comedy_mask</button>
                     <button class="material-symbols-outlined" id="creature-button">raven</button>
+                    <button class="material-symbols-outlined" id="environment-button">forest</button>
                     <button class="material-symbols-outlined" id="object-button">iron</button>
                 </div>
             </div>
