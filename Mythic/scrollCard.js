@@ -6,7 +6,7 @@ for (let i = 0; i < cardHolders.length; i++) {
 
     cardHolder.addEventListener("wheel", (eventInfo) => changeActiveCardWheel(eventInfo, cardHolder));
     cardHolder.addEventListener("touchstart", touchStart);
-    cardHolder.addEventListener("touchmove", (eventInfo) => changeActiveCardMouse(eventInfo, cardHolder));
+    cardHolder.addEventListener("touchmove", (eventInfo) => changeActiveCardTouch(eventInfo, cardHolder));
 }
 
 function UpdateCardIndexes(cardHolder, moveToFront=true) {
@@ -47,8 +47,8 @@ function touchMove(event) {
     return offset;  
 }
 
-function changeActiveCardMouse(eventInfo, cardHolder) {
-    changeActiveCard(cardHolder, parseInt(touchMove(eventInfo).x) * -3);
+function changeActiveCardTouch(eventInfo, cardHolder) {
+    changeActiveCard(cardHolder, parseInt(touchMove(eventInfo).x) * 1);
     touchStart(eventInfo);
 }
 
