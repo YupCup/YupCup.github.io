@@ -47,13 +47,13 @@ function clearAll() {
 
     var newCard = card.cloneNode(true);
     card.after(newCard);
-    UpdateCardIndexes(cardHolder);
     let closeButton = newCard.getElementsByClassName("closeButton")[0];
     closeButton.classList.remove("sample");
     closeButton.addEventListener("click", ()=>
         {
+            RemoveScrollCard(cardHolder.children.length - Array.from(cardHolder.children).indexOf(newCard) - 1);
             closeButton.parentNode.remove();
-            UpdateCardIndexes(cardHolder);
+            UpdateCardIndexes(cardHolder, false);
         }
     )
 
@@ -66,4 +66,9 @@ function clearAll() {
     resultText = old_element.cloneNode(true);
     old_element.parentNode.replaceChild(resultText, old_element);
     applyAppearAnimation(resultDiv);
+}
+
+function completeEventGeneration() {
+    UpdateCardIndexes(cardHolder, false);
+    setTimeout(() => AddScrollCard(cardHolder), 50);
 }

@@ -71,6 +71,8 @@ function generateEvent() {
     createRandomEventInfo("forest", [eventLocations]);
     createRandomEventInfo("person", [eventCharacters]);
     createRandomEventInfo("package_2", [eventObjects]);
+    
+    completeEventGeneration();
 }
 
 document.getElementById("character-button").addEventListener("click", generateCharacter);
@@ -85,6 +87,8 @@ function generateCharacter() {
     createRandomEventInfo("history", [characterBackgrounds]);
     createRandomEventInfo("local_fire_department", [characterMotivations]);
     createRandomEventInfo("voice_selection", [characterPersonalities]);
+    
+    completeEventGeneration();
 }
 
 function generateName() {
@@ -107,7 +111,8 @@ function generateBeast() {
     createEmptyEvent();
     createRandomEventInfo("swords", [creatureAbilities]);
     createRandomEventInfo("bolt", [powers]);
-
+    
+    completeEventGeneration();
 }
 
 document.getElementById("environment-button").addEventListener("click", generateTerrain);
@@ -119,6 +124,8 @@ function generateTerrain() {
     createRandomEventInfo("visibility", [terrainDescriptors]);
     createRandomEventInfo("oxygen_saturation", [smells]);
     createRandomEventInfo("hearing", [sounds]);
+
+    completeEventGeneration();
 }
 
 document.getElementById("object-button").addEventListener("click", generateObject);
@@ -132,14 +139,17 @@ function generateObject() {
     if (diceResult >= 8) {
         createRandomEventInfo("star", [enchantments]);
         setEventsPerLine(2);
+        completeEventGeneration();
         return;
     }
     else if (diceResult <= 2) {
         createRandomEventInfo("heart_broken", [damages]);
         setEventsPerLine(2);
+        completeEventGeneration();
         return;
     }
     setEventsPerLine(1);
+    completeEventGeneration();
 }
 
 document.getElementById("dice-button-4").addEventListener("click", () => throwDice(4));
@@ -154,6 +164,8 @@ function throwDice(dice) {
     clearAll();
     setResultText(getDice(dice), "", "d" + dice, true);
     setNameReroll(() => setResultText(getDice(dice), "", "d" + dice, true));
+    
+    completeEventGeneration();
 }
 
 function getRandomFromLists(lists) {

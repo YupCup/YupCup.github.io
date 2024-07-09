@@ -1,6 +1,7 @@
 let cardHolders = document.getElementsByClassName("scrollCardHolder");
 for (let i = 0; i < cardHolders.length; i++) {
     let cardHolder = cardHolders[i];
+
     UpdateCardIndexes(cardHolder);
 
     cardHolder.addEventListener("wheel", (eventInfo) => changeActiveCardWheel(eventInfo, cardHolder));
@@ -8,12 +9,27 @@ for (let i = 0; i < cardHolders.length; i++) {
     cardHolder.addEventListener("touchmove", (eventInfo) => changeActiveCardMouse(eventInfo, cardHolder));
 }
 
-function UpdateCardIndexes(cardHolder) {
+function UpdateCardIndexes(cardHolder, moveToFront=true) {
     for (let i = 0; i < cardHolder.children.length; i++) {
         const card = cardHolder.children[i];
         card.style.setProperty("--sibling-index", i);
     }
-    cardHolder.style.setProperty("--scroll-amount", 0);
+    if (moveToFront)
+        cardHolder.style.setProperty("--scroll-amount", 0);
+}
+
+function AddScrollCard(cardHolder) {
+    changeActiveCard(cardHolder, 0);
+}
+
+function RemoveScrollCard(index) {
+    // Fix
+
+    let scrollAmount = parseInt(cardHolder.style.getPropertyValue("--scroll-amount"));
+    if (isNaN(scrollAmount))
+        scrollAmount = 0;
+
+    cardHolder.style.setProperty("--scroll-amount", scrollAmount);
 }
 
 let start = {x:0, y:0};
@@ -49,14 +65,32 @@ function changeActiveCard(cardHolder, delta) {
         scrollAmount = 0;
     scrollAmount -= delta;
 
-    let scrollSpeed = getComputedStyle(cardHolder).getPropertyValue("--scroll-speed");
-    if (scrollAmount < 0 || cardHolder.children.length < scrollAmount/scrollSpeed + 1)
-        scrollAmount += delta;
+    let cardHolderWidth = parseFloat(getComputedStyle(cardHolder).width);
+    let firstChildWidth = parseFloat(getComputedStyle(cardHolder.children[0]).width)
+    let lastChildWidth = parseFloat(getComputedStyle(cardHolder.children[cardHolder.children.length - 1]).width)
 
+    if (scrollAmount >= (cardHolderWidth - firstChildWidth)/2) 
+        scrollAmount = (cardHolderWidth - firstChildWidth)/2;
+    if (scrollAmount <= (-cardHolderWidth + lastChildWidth)/2) 
+        scrollAmount = (-cardHolderWidth + lastChildWidth)/2;
+    
     cardHolder.style.setProperty("--scroll-amount", scrollAmount);
+    // cardHolder.style.setProperty("--active-card-index", getActiveCardIndex(scrollAmount, cardHolder));
+    cardHolder.style.left = scrollAmount + "px";
+}
 
+function getActiveCardIndex(scrollAmount, cardHolder) {
+    let closestIndex = -3;
+    let closestPos = 10000;
     for (let i = 0; i < cardHolder.children.length; i++) {
-        const card = cardHolder.children[i];
-        card.style.display = scrollSpeed * i - scrollAmount > 1000 ? "none" : "block";
+        const child = cardHolder.children[i];
+        let rectPosX = Math.abs(child.getBoundingClientRect().x);
+
+        if (rectPosX < closestPos) {
+            closestIndex = i;
+            closestPos = rectPosX;
+        }
     }
+    console.log(closestIndex);
+    return closestIndex;
 }
