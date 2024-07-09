@@ -69,6 +69,6 @@ function clearAll() {
 }
 
 function completeEventGeneration() {
-    UpdateCardIndexes(cardHolder, false);
-    setTimeout(() => AddScrollCard(cardHolder), 50);
+    UpdateCardIndexes(cardHolder);
+    AddScrollCard(cardHolder);
 }

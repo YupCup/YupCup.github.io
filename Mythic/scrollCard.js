@@ -19,7 +19,7 @@ function UpdateCardIndexes(cardHolder, moveToFront=true) {
 }
 
 function AddScrollCard(cardHolder) {
-    changeActiveCard(cardHolder, 0);
+    changeActiveCard(cardHolder, -10000);
 }
 
 function RemoveScrollCard(index) {
